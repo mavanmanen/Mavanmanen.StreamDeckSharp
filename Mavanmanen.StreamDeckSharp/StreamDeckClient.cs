@@ -54,8 +54,7 @@ namespace Mavanmanen.StreamDeckSharp
             try
             {
                 _socket = new ClientWebSocket();
-                await _socket.ConnectAsync(new Uri($"ws://localhost:{_arguments.Port}"),
-                    _cancellationTokenSource.Token);
+                await _socket.ConnectAsync(new Uri($"ws://localhost:{_arguments.Port}"), _cancellationTokenSource.Token);
                 while (_socket.State == WebSocketState.Connecting)
                 {
                     await Task.Delay(500, _cancellationTokenSource.Token);
