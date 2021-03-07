@@ -22,7 +22,7 @@ jobs:
     - name: Publish to NuGet
       uses: brandedoutcast/publish-nuget@v2
       with:
-        PROJECT_FILE_PATH: "src/Mavanmanen.StreamDeckSharp/Mavanmanen.StreamDeckSharp.csproj"
+        PROJECT_FILE_PATH: "src/Mavanmanen.StreamDeckSharp/bin/release/net5.0/publish"
         VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
         TAG_FORMAT: '*'
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
