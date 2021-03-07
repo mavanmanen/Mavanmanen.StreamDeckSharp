@@ -39,7 +39,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
             States = actionStateData?.Select(a => new ManifestActionState(a)).ToArray();
             SupportedInMultiActions = actionData.SupportedInMultiActions;
             Tooltip = actionData.Tooltip;
-            Uuid = $"{uuidBase}.{Name}";
+            Uuid = $"{uuidBase}.{Name.ToLower()}";
             VisibleInActionsList = actionData.VisibleInActionsList;
         }
     }

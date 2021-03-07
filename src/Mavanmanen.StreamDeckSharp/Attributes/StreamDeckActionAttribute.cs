@@ -24,7 +24,7 @@ namespace Mavanmanen.StreamDeckSharp.Attributes
             string? tooltip = null,
             string? propertyInspectorPath = null,
             bool supportedInMultiActions = true,
-            bool visibleInActionsList = false)
+            bool visibleInActionsList = true)
         {
             if (icon == null && visibleInActionsList)
             {
