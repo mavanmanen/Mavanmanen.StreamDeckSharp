@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Mavanmanen.StreamDeckSharp.Internal.Events;
+using Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents;
+using Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents;
 using Mavanmanen.StreamDeckSharp.Internal.Messages;
 using Newtonsoft.Json;
 
@@ -16,32 +18,15 @@ namespace Mavanmanen.StreamDeckSharp.Internal
         private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
         private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
-        private readonly StreamDeckClientArguments _arguments;
+        private readonly ClientArguments _arguments;
         private ClientWebSocket? _socket;
 
-        public event EventHandler<EventArgs>? Connected;
-        public event EventHandler<EventArgs>? Disconnected;
+        public event EventHandler<StreamDeckActionEvent>? ActionEventReceived;
+        public event EventHandler<StreamDeckPluginEvent>? PluginEventReceived;
 
-        public event EventHandler<KeyDownEvent>? KeyDown;
-        public event EventHandler<KeyUpEvent>? KeyUp;
-        public event EventHandler<WillAppearEvent>? WillAppear;
-        public event EventHandler<WillDisappearEvent>? WillDisappear;
-        public event EventHandler<TitleParameterDidChangeEvent>? TitleParametersDidChange;
-        public event EventHandler<DeviceDidConnectEvent>? DeviceDidConnect;
-        public event EventHandler<DeviceDidDisconnectEvent>? DeviceDidDisconnect;
-        public event EventHandler<ApplicationDidLaunchEvent>? ApplicationDidLaunch;
-        public event EventHandler<ApplicationDidTerminateEvent>? ApplicationDidTerminate;
-        public event EventHandler<SendToPluginEvent>? SendToPlugin;
-        public event EventHandler<DidReceiveSettingsEvent>? DidReceiveSettings;
-        public event EventHandler<DidReceiveGlobalSettingsEvent>? DidReceiveGlobalSettings;
-        public event EventHandler<PropertyInspectorDidAppearEvent>? PropertyInspectorDidAppear;
-        public event EventHandler<PropertyInspectorDidDisappearEvent>? PropertyInspectorDidDisappear;
-
-        public InternalClient(string[] args) : this(StreamDeckClientArguments.ParseFromArgs(args)) { }
-
-        public InternalClient(StreamDeckClientArguments args)
+        public InternalClient(string[] args)
         {
-            _arguments = args;
+            _arguments = ClientArguments.ParseFromArgs(args);
         }
 
         public async Task RunAsync()
@@ -67,7 +52,6 @@ namespace Mavanmanen.StreamDeckSharp.Internal
 
                 await SendAsync(new RegisterEventMessage(_arguments.RegisterEvent, _arguments.UUID));
 
-                Connected?.Invoke(this, new EventArgs());
                 await ReceiveAsync();
             }
             finally
@@ -89,7 +73,6 @@ namespace Mavanmanen.StreamDeckSharp.Internal
             _socket = null;
             await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Disconnecting", _cancellationTokenSource.Token);
             socket.Dispose();
-            Disconnected?.Invoke(this, new EventArgs());
         }
 
         private async Task ReceiveAsync()
@@ -112,11 +95,6 @@ namespace Mavanmanen.StreamDeckSharp.Internal
                     continue;
                 }
 
-                if (result == null)
-                {
-                    continue;
-                }
-
                 if (result.MessageType == WebSocketMessageType.Close)
                 {
                     return;
@@ -134,63 +112,27 @@ namespace Mavanmanen.StreamDeckSharp.Internal
                 {
                     continue;
                 }
-                
-                switch (streamDeckEvent)
+
+                switch (streamDeckEvent.Event)
                 {
-                    case KeyDownEvent keyDownEvent:
-                        KeyDown?.Invoke(this, keyDownEvent);
+                    case EventTypes.KeyDown:
+                    case EventTypes.KeyUp:
+                    case EventTypes.WillAppear:
+                    case EventTypes.WillDisappear:
+                    case EventTypes.TitleParameterDidChange:
+                    case EventTypes.DidReceiveSettings:
+                    case EventTypes.PropertyInspectorDidAppear:
+                    case EventTypes.PropertyInspectorDidDisappear:
+                        ActionEventReceived?.Invoke(this, (StreamDeckActionEvent) streamDeckEvent);
                         break;
 
-                    case KeyUpEvent keyUpEvent:
-                        KeyUp?.Invoke(this, keyUpEvent);
-                        break;
-
-                    case WillAppearEvent willAppearEvent:
-                        WillAppear?.Invoke(this, willAppearEvent);
-                        break;
-
-                    case WillDisappearEvent willDisappearEvent:
-                        WillDisappear?.Invoke(this, willDisappearEvent);
-                        break;
-
-                    case TitleParameterDidChangeEvent titleParameterDidChangeEvent:
-                        TitleParametersDidChange?.Invoke(this, titleParameterDidChangeEvent);
-                        break;
-
-                    case DeviceDidConnectEvent deviceDidConnectEvent:
-                        DeviceDidConnect?.Invoke(this, deviceDidConnectEvent);
-                        break;
-
-                    case DeviceDidDisconnectEvent deviceDidDisconnectEvent:
-                        DeviceDidDisconnect?.Invoke(this, deviceDidDisconnectEvent);
-                        break;
-
-                    case ApplicationDidLaunchEvent applicationDidLaunchEvent:
-                        ApplicationDidLaunch?.Invoke(this, applicationDidLaunchEvent);
-                        break;
-
-                    case ApplicationDidTerminateEvent applicationDidTerminateEvent:
-                        ApplicationDidTerminate?.Invoke(this, applicationDidTerminateEvent);
-                        break;
-
-                    case SendToPluginEvent sendToPluginEvent:
-                        SendToPlugin?.Invoke(this, sendToPluginEvent);
-                        break;
-
-                    case DidReceiveSettingsEvent didReceiveSettingsEvent:
-                        DidReceiveSettings?.Invoke(this, didReceiveSettingsEvent);
-                        break;
-
-                    case DidReceiveGlobalSettingsEvent didReceiveGlobalSettingsEvent:
-                        DidReceiveGlobalSettings?.Invoke(this, didReceiveGlobalSettingsEvent);
-                        break;
-
-                    case PropertyInspectorDidAppearEvent propertyInspectorDidAppearEvent:
-                        PropertyInspectorDidAppear?.Invoke(this, propertyInspectorDidAppearEvent);
-                        break;
-
-                    case PropertyInspectorDidDisappearEvent propertyInspectorDidDisappearEvent:
-                        PropertyInspectorDidDisappear?.Invoke(this, propertyInspectorDidDisappearEvent);
+                    case EventTypes.DeviceDidConnect:
+                    case EventTypes.DeviceDidDisconnect:
+                    case EventTypes.ApplicationDidLaunch:
+                    case EventTypes.ApplicationDidTerminate:
+                    case EventTypes.SendToPlugin:
+                    case EventTypes.DidReceiveGlobalSettings:
+                        PluginEventReceived?.Invoke(this, (StreamDeckPluginEvent) streamDeckEvent);
                         break;
                 }
             }

@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mavanmanen.StreamDeckSharp", "Mavanmanen.StreamDeckSharp\Mavanmanen.StreamDeckSharp.csproj", "{65930590-9B6A-4604-B40A-731238E733CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mavanmanen.StreamDeckSharp.Tester", "Mavanmanen.StreamDeckSharp.Tester\Mavanmanen.StreamDeckSharp.Tester.csproj", "{963BAC53-4268-4747-B64B-91A54369D2F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{65930590-9B6A-4604-B40A-731238E733CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65930590-9B6A-4604-B40A-731238E733CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65930590-9B6A-4604-B40A-731238E733CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{963BAC53-4268-4747-B64B-91A54369D2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{963BAC53-4268-4747-B64B-91A54369D2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{963BAC53-4268-4747-B64B-91A54369D2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{963BAC53-4268-4747-B64B-91A54369D2F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
