@@ -4,7 +4,7 @@ using Mavanmanen.StreamDeckSharp.Attributes.Data;
 namespace Mavanmanen.StreamDeckSharp.Attributes
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-    public class StreamDeckOsAttribute : Attribute
+    public class StreamDeckMinimumOsVersionAttribute : Attribute
     {
         internal OsData Data { get; }
 
@@ -15,7 +15,7 @@ namespace Mavanmanen.StreamDeckSharp.Attributes
         /// </summary>
         /// <param name="windowsMinimumVersion">On Windows, the OS Build information is used for the MinimumVersion.</param>
         /// <param name="macMinimumVersion">On macOS, the version is used for the MinimumVersion.</param>
-        public StreamDeckOsAttribute(
+        public StreamDeckMinimumOsVersionAttribute(
             string windowsMinimumVersion,
             string macMinimumVersion)
         {

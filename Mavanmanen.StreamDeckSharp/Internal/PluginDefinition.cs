@@ -20,7 +20,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal
             Type = type;
 
             PluginData = type.GetCustomAttribute<StreamDeckPluginAttribute>()!.Data;
-            OsData = type.GetCustomAttribute<StreamDeckOsAttribute>()!.Data;
+            OsData = type.GetCustomAttribute<StreamDeckMinimumOsVersionAttribute>()!.Data;
 
             IEnumerable<StreamDeckProfileAttribute> profileAttributes = type.GetCustomAttributes<StreamDeckProfileAttribute>().ToArray();
             if (profileAttributes.Any())

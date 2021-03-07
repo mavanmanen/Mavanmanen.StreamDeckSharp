@@ -5,7 +5,7 @@ using Mavanmanen.StreamDeckSharp.Attributes;
 namespace Mavanmanen.StreamDeckSharp.Tester
 {
     [StreamDeckPlugin("tester", "Images/pluginIcon", "mavanmanen", "tester plugin", "1.0")]
-    [StreamDeckOs("10", "10.11")]
+    [StreamDeckMinimumOsVersion("10", "10.11")]
     public class Program : StreamDeckPlugin
     {
         public static async Task Main(string[] args)
@@ -26,6 +26,9 @@ namespace Mavanmanen.StreamDeckSharp.Tester
     [StreamDeckActionState("Images/defaultImage")]
     public class TestAction : StreamDeckAction
     {
+        public override Task OnKeyDownAsync()
+        {
 
+        }
     }
 }
