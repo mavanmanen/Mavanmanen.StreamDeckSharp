@@ -11,6 +11,9 @@ In addition to easy creation of plugins this framework also includes dependency 
 
 ## Usage
 
+Install using NuGet:
+`Install-Package Mavanmanen.StreamDeckSharp`
+
 At minimum your plugin must follow these rules:
 
 1. Your plugin must have exactly one class that inherits from `StreamDeckPlugin`.
