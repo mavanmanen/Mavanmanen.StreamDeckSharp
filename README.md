@@ -1,4 +1,5 @@
 [![CI](https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp/actions/workflows/dotnet.yml/badge.svg)](https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp/actions/workflows/dotnet.yml)
+[![CodeQL](https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp/actions/workflows/codeql-analysis.yml)
 
 # Work In Progress
 
