@@ -26,7 +26,7 @@ namespace Mavanmanen.StreamDeckSharp.Tester
     [StreamDeckActionState("Images/defaultImage")]
     public class TestAction : StreamDeckAction
     {
-        public override Task OnKeyDownAsync()
+        public override async Task OnKeyDownAsync()
         {
 
         }

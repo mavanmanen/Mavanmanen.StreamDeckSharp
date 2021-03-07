@@ -23,6 +23,7 @@ You can then override the needed events in your Plugin and Action classes to imp
 ```csharp
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Mavanmanen.StreamDeckSharp;
 using Mavanmanen.StreamDeckSharp.Attributes;
 
 namespace Mavanmanen.StreamDeckPlugin
