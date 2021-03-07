@@ -1,3 +1,5 @@
+[![CI](https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp/actions/workflows/dotnet.yml/badge.svg)](https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp/actions/workflows/dotnet.yml)
+
 # Work In Progress
 
 # StreamDeckSharp
