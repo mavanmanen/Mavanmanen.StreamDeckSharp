@@ -18,11 +18,11 @@ jobs:
     - name: Install dependencies
       run: dotnet restore "src/Mavanmanen.StreamDeckSharp/Mavanmanen.StreamDeckSharp.csproj"
     - name: Publish
-      run: dotnet publish "src/Mavanmanen.StreamDeckSharp/Mavanmanen.StreamDeckSharp.csproj"
+      run: dotnet build --configuration Release --no-restore "src/Mavanmanen.StreamDeckSharp/Mavanmanen.StreamDeckSharp.csproj"
     - name: Publish to NuGet
       uses: brandedoutcast/publish-nuget@v2
       with:
-        PROJECT_FILE_PATH: "src/Mavanmanen.StreamDeckSharp/bin/release/net5.0/publish"
+        PROJECT_FILE_PATH: "src/Mavanmanen.StreamDeckSharp/Mavanmanen.StreamDeckSharp.csproj"
         VERSION_REGEX: '^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
         TAG_FORMAT: '*'
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
