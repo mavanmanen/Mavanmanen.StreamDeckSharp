@@ -44,8 +44,4 @@
     </None>
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy /y &quot;$(TargetDir)\*&quot; &quot;C:\Users\mavan\AppData\Roaming\Elgato\StreamDeck\Plugins\com.mavanmanen.streamdecksharptester.sdPlugin\&quot;" />
-  </Target>
-
 </Project>

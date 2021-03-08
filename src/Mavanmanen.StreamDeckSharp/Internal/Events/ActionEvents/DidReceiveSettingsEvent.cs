@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents
 {
-    internal class DidReceiveSettingsEvent : StreamDeckEvent
+    internal class DidReceiveSettingsEvent : StreamDeckActionEvent
     {
         [JsonProperty("payload")]
-        public ReceiveSettingsPayload? Payload { get; private set; }
+        public ReceiveSettingsPayload Payload { get; private set; } = null!;
     }
 }

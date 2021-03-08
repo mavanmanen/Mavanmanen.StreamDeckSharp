@@ -8,6 +8,7 @@ using Mavanmanen.StreamDeckSharp.Internal;
 using Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents;
 using Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents;
 using Mavanmanen.StreamDeckSharp.Internal.Manifest;
+using Mavanmanen.StreamDeckSharp.Internal.PropertyInspector;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Mavanmanen.StreamDeckSharp
@@ -30,6 +31,7 @@ namespace Mavanmanen.StreamDeckSharp
             services.AddSingleton<ActionEventHandler>();
             services.AddSingleton<PluginEventHandler>();
             services.AddSingleton<ManifestGenerator>();
+            services.AddSingleton<PropertyInspectorGenerator>();
 
             _services = services.BuildServiceProvider();
 
@@ -37,6 +39,9 @@ namespace Mavanmanen.StreamDeckSharp
             {
                 var manifestGenerator = _services.GetRequiredService<ManifestGenerator>();
                 manifestGenerator.GenerateManifest();
+
+                var propertyInspectorGenerator = _services.GetRequiredService<PropertyInspectorGenerator>();
+                propertyInspectorGenerator.GeneratePropertyInspectors();
 
                 return;
             }

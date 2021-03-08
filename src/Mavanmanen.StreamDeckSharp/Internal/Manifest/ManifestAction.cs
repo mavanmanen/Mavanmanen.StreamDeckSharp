@@ -31,7 +31,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
         [JsonProperty("VisibleInActionsList")]
         public bool? VisibleInActionsList { get; }
 
-        public ManifestAction(string uuidBase, ActionData actionData, IEnumerable<ActionStateData>? actionStateData)
+        public ManifestAction(string uuidBase, ActionData actionData, IEnumerable<ActionStateData>? actionStateData, bool propertyInspectorSet)
         {
             Icon = actionData.Icon;
             Name = actionData.Name;
@@ -41,6 +41,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
             Tooltip = actionData.Tooltip;
             Uuid = $"{uuidBase}.{Name.ToLower()}";
             VisibleInActionsList = actionData.VisibleInActionsList;
+
+            if (propertyInspectorSet)
+            {
+                PropertyInspectorPath = $"propertyInspector/{Name}.html";
+            }
         }
     }
 }

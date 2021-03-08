@@ -1,6 +1,6 @@
 ﻿namespace Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents
 {
-    internal class PropertyInspectorDidAppearEvent : StreamDeckEvent
+    internal class PropertyInspectorDidAppearEvent : StreamDeckActionEvent
     {
     }
 }

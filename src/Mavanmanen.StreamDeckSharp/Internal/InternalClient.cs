@@ -39,7 +39,8 @@ namespace Mavanmanen.StreamDeckSharp.Internal
             try
             {
                 _socket = new ClientWebSocket();
-                await _socket.ConnectAsync(new Uri($"ws://localhost:{_arguments.Port}"), _cancellationTokenSource.Token);
+                await _socket.ConnectAsync(new Uri($"ws://localhost:{_arguments.Port}"),
+                    _cancellationTokenSource.Token);
                 while (_socket.State == WebSocketState.Connecting)
                 {
                     await Task.Delay(500, _cancellationTokenSource.Token);
@@ -53,6 +54,10 @@ namespace Mavanmanen.StreamDeckSharp.Internal
                 await SendAsync(new RegisterEventMessage(_arguments.RegisterEvent, _arguments.UUID));
 
                 await ReceiveAsync();
+            }
+            catch (Exception e)
+            {
+
             }
             finally
             {
@@ -90,7 +95,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal
                 {
                     result = await _socket.ReceiveAsync(arrayBuffer, _cancellationTokenSource.Token);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     continue;
                 }
@@ -151,7 +156,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal
                 byte[] buffer = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
                 await _socket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, _cancellationTokenSource.Token);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 await DisconnectAsync();
             }

@@ -19,7 +19,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
         public void GenerateManifest()
         {
             string pluginNameSpace = _plugin.Type.Namespace!.ToLower();
-            IEnumerable<ManifestAction> actions = _actions.Select(a => new ManifestAction(pluginNameSpace, a.ActionData, a.ActionStateData));
+            IEnumerable<ManifestAction> actions = _actions.Select(a => new ManifestAction(pluginNameSpace, a.ActionData, a.ActionStateData, a.PropertyInspectorSet));
             var manifest = new Manifest(pluginNameSpace, _plugin.PluginData, _plugin.OsData, _plugin.ProfileData, _plugin.ApplicationsToMonitorData, actions);
 
             string json = JsonConvert.SerializeObject(manifest, Formatting.Indented, new JsonSerializerSettings

@@ -7,12 +7,12 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents.Payloads
     internal class ReceiveSettingsPayload
     {
         [JsonProperty("settings")]
-        public JObject? Settings { get; private set; }
+        public JObject Settings { get; private set; } = null!;
 
         [JsonProperty("coordinates")]
-        public Coordinates? Coordinates { get; private set; }
+        public Coordinates Coordinates { get; private set; } = null!;
 
         [JsonProperty("isInMultiAction")]
-        public bool? IsInMultiAction { get; private set; }
+        public bool IsInMultiAction { get; private set; }
     }
 }
