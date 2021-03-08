@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <Version>0.0.2.1</Version>
+    <Version>1.0.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>mavanmanen</Authors>
     <Company></Company>
     <RepositoryUrl>https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp</RepositoryUrl>
     <PackageProjectUrl>https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp</PackageProjectUrl>
     <RepositoryType>Github</RepositoryType>
-    <AssemblyVersion>0.0.2.1</AssemblyVersion>
-    <FileVersion>0.0.2.1</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression></PackageLicenseExpression>
     <Copyright>Mitchell van Manen</Copyright>
