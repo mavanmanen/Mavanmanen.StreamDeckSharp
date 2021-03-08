@@ -52,10 +52,6 @@ namespace Mavanmanen.StreamDeckSharp.Internal
                 case EventTypes.TitleParameterDidChange:
                     await HandleTitleParametersDidChangeEventAsync(actionInstance, (TitleParameterDidChangeEvent) actionEvent);
                     break;
-
-                //case EventTypes.DidReceiveSettings:
-                //    await HandleDidReceiveSettingsEventAsync(actionInstance, (DidReceiveSettingsEvent) actionEvent);
-                //    break;
             }
         }
 
@@ -104,14 +100,6 @@ namespace Mavanmanen.StreamDeckSharp.Internal
             actionInstance.State = titleParameterDidChangeEvent.Payload.State;
             actionInstance.Settings = titleParameterDidChangeEvent.Payload.Settings;
             await actionInstance.TitleParametersDidChange(titleParameterDidChangeEvent.Payload.Title, titleParameterDidChangeEvent.Payload.TitleParameters);
-        }
-
-        private static async Task HandleDidReceiveSettingsEventAsync(StreamDeckAction actionInstance, DidReceiveSettingsEvent didReceiveSettingsEvent)
-        {
-            actionInstance.Coordinates = didReceiveSettingsEvent.Payload.Coordinates;
-            actionInstance.IsInMultiAction = didReceiveSettingsEvent.Payload.IsInMultiAction;
-            actionInstance.Settings = didReceiveSettingsEvent.Payload.Settings;
-            await actionInstance.DidReceiveSettingsAsync();
         }
     }
 }
