@@ -55,7 +55,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
 
                 await ReceiveAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
@@ -95,7 +95,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
                 {
                     result = await _socket.ReceiveAsync(arrayBuffer, _cancellationTokenSource.Token);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     continue;
                 }
@@ -162,7 +162,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
 
                 await _socket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, _cancellationTokenSource.Token);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 await DisconnectAsync();
             }
