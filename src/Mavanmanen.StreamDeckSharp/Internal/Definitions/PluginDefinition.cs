@@ -11,7 +11,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Definitions
     {
         public Type Type { get; }
         public PluginData PluginData { get; }
-        public OsData OsData { get; }
+        public OsData? OsData { get; }
         public ProfileData[]? ProfileData { get; }
         public ApplicationsToMonitorData? ApplicationsToMonitorData { get; }
 
@@ -20,7 +20,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Definitions
             Type = type;
 
             PluginData = type.GetCustomAttribute<StreamDeckPluginAttribute>()!.Data;
-            OsData = type.GetCustomAttribute<StreamDeckMinimumOsVersionAttribute>()!.Data;
+            OsData = type.GetCustomAttribute<StreamDeckMinimumOsVersionAttribute>()?.Data;
 
             IEnumerable<StreamDeckProfileAttribute> profileAttributes = type.GetCustomAttributes<StreamDeckProfileAttribute>().ToArray();
             if (profileAttributes.Any())

@@ -4,14 +4,14 @@ using Mavanmanen.StreamDeckSharp.Attributes.Data;
 
 namespace Mavanmanen.StreamDeckSharp.Attributes
 {
+    /// <summary>
+    /// The Stream Deck plugin.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
     public class StreamDeckPluginAttribute : Attribute
     {
         internal PluginData Data { get; }
-
-        /// <summary>
-        /// The Stream Deck plugin.
-        /// </summary>
+        
         /// <param name="name">The name of the plugin.<br/>This string is displayed to the user in the Stream Deck store.</param>
         /// <param name="icon">The relative path to a PNG image without the .png extension.<br/>This image is displayed in the Plugin Store window.<br/>The PNG image should be a 72pt x 72pt image.<br/>You should provide @1x and @2x versions of the image.<br/>The Stream Deck application takes care of loading the appropriate version of the image.</param>
         /// <param name="author">The author of the plugin.<br/>This string is displayed to the user in the Stream Deck store.</param>

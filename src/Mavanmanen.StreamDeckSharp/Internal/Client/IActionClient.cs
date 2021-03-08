@@ -11,6 +11,5 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
         Task ShowAlertAsync(string context);
         Task ShowOkAsync(string context);
         Task SetStateAsync(string context, int state);
-        Task SendToPropertyInspectorAsync(string context, object payload);
     }
 }

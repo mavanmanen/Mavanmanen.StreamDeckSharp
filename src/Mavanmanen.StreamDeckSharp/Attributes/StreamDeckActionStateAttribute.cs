@@ -4,16 +4,16 @@ using Mavanmanen.StreamDeckSharp.Enum;
 
 namespace Mavanmanen.StreamDeckSharp.Attributes
 {
+    /// <summary>
+    /// Specifies an array of states.<br/>
+    /// Each action can have one state or 2 states (on/off).<br/>
+    /// For example the Hotkey action has a single state. However the Game Capture Record action has 2 states, active and inactive.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public class StreamDeckActionStateAttribute : Attribute
     {
         internal ActionStateData Data { get; }
-
-        /// <summary>
-        /// Specifies an array of states.<br/>
-        /// Each action can have one state or 2 states (on/off).<br/>
-        /// For example the Hotkey action has a single state. However the Game Capture Record action has 2 states, active and inactive.
-        /// </summary>
+        
         /// <param name="image">The default image for the state.</param>
         /// <param name="name">The name of the state displayed in the dropdown menu in the Multi action.<br/>For example Start or Stop for the states of the Game Capture Record action.<br/>If the name is not provided, the state will not appear in the Multi Action.</param>
         /// <param name="multiActionImage">This can be used if you want to provide a different image for the state when the action is displayed in a Multi Action.</param>

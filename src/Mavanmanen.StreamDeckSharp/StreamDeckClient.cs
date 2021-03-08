@@ -17,11 +17,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Mavanmanen.StreamDeckSharp
 {
+    /// <summary>
+    /// The client to handle your plugin's connection with the Stream Deck software.
+    /// </summary>
     public class StreamDeckClient : IPluginClient, IActionClient
     {
         private readonly InternalClient? _client;
         private readonly ServiceProvider _services;
 
+        /// <summary>
+        /// </summary>
+        /// <param name="args">The arguments as provided to your plugin's program main method.</param>
         public StreamDeckClient(string[] args)
         {
             var services = new ServiceCollection();
@@ -61,6 +67,9 @@ namespace Mavanmanen.StreamDeckSharp
             _client.PluginEventReceived += HandlePluginEventAsync;
         }
 
+        /// <summary>
+        /// Run the client.
+        /// </summary>
         public async Task RunAsync()
         {
             if (_client == null)
@@ -126,7 +135,6 @@ namespace Mavanmanen.StreamDeckSharp
         public async Task ShowAlertAsync(string context) => await _client!.SendAsync(new ShowAlertMessage(context));
         public async Task ShowOkAsync(string context) => await _client!.SendAsync(new ShowOkMessage(context));
         public async Task SetStateAsync(string context, int state) => await _client!.SendAsync(new SetStateMessage(context, state));
-        public async Task SendToPropertyInspectorAsync(string context, object payload) => await _client!.SendAsync(new SendToPropertyInspectorMessage(context, payload));
         public async Task OpenUrlAsync(string url) => await _client!.SendAsync(new OpenUrlMessage(url));
         public async Task SetGlobalSettings(string context, object payload) => await _client!.SendAsync(new SetGlobalSettingsMessage(context, payload));
         public async Task LogMessageAsync(string message) => await _client!.SendAsync(new LogMessage(message));

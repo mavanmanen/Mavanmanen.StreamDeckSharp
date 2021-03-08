@@ -4,16 +4,16 @@ using Mavanmanen.StreamDeckSharp.Enum;
 
 namespace Mavanmanen.StreamDeckSharp.Attributes
 {
+    /// <summary>
+    /// Specifies an array of profiles.<br/>
+    /// A plugin can indeed have one or multiple profiles that are proposed to the user on installation.<br/>
+    /// This lets you create fullscreen plugins.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public class StreamDeckProfileAttribute : Attribute
     {
         internal ProfileData Data { get; }
-
-        /// <summary>
-        /// Specifies an array of profiles.<br/>
-        /// A plugin can indeed have one or multiple profiles that are proposed to the user on installation.<br/>
-        /// This lets you create fullscreen plugins.
-        /// </summary>
+        
         /// <param name="name">The filename of the profile.</param>
         /// <param name="deviceType">Type of device.</param>
         /// <param name="readOnly">	Boolean to mark the profile as read-only.<br/>False by default.</param>

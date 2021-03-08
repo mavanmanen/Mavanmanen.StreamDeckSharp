@@ -1,5 +1,8 @@
 ﻿namespace Mavanmanen.StreamDeckSharp.Enum
 {
+    /// <summary>
+    /// Support font families.
+    /// </summary>
     public enum FontFamily
     {
         Arial,
