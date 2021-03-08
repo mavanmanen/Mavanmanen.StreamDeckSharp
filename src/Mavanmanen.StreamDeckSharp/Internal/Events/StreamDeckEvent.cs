@@ -14,7 +14,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events
         {
             JObject obj = JObject.Parse(json);
 
-            if (obj.ContainsKey("event") && Enum.TryParse(obj["event"]?.ToString(), true, out EventTypes eventType))
+            if (obj.ContainsKey("event") && System.Enum.TryParse(obj["event"]?.ToString(), true, out EventTypes eventType))
             {
                 return eventType switch
                 {

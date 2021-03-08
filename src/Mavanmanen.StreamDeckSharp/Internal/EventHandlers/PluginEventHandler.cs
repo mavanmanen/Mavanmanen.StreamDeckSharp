@@ -36,7 +36,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
                     break;
 
                 case EventTypes.DidReceiveGlobalSettings:
-                    await _plugin.DidReceiveGlobalSettingsAsync(((DidReceiveGlobalSettingsEvent) pluginEvent).Payload.Settings)
+                    await _plugin.DidReceiveGlobalSettingsAsync(((DidReceiveGlobalSettingsEvent) pluginEvent).Payload.Settings);
                     break;
 
                 case EventTypes.SystemDidWakeUp:
