@@ -1,4 +1,5 @@
-﻿namespace Mavanmanen.StreamDeckSharp.Enum
+﻿#pragma warning disable 1591
+namespace Mavanmanen.StreamDeckSharp.Enum
 {
     /// <summary>
     /// Support font families.
