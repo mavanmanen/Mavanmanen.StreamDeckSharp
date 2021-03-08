@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Mavanmanen.StreamDeckSharp.Internal.Definitions;
 using Newtonsoft.Json;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Manifest

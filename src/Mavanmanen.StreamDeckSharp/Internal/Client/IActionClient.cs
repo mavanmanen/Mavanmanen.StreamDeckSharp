@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Mavanmanen.StreamDeckSharp.Enum;
 
-namespace Mavanmanen.StreamDeckSharp.Internal
+namespace Mavanmanen.StreamDeckSharp.Internal.Client
 {
     internal interface IActionClient : IPluginClient
     {

@@ -1,5 +1,4 @@
-﻿using Mavanmanen.StreamDeckSharp.Attributes;
-using Mavanmanen.StreamDeckSharp.Attributes.Data;
+﻿using Mavanmanen.StreamDeckSharp.Attributes.Data;
 using Mavanmanen.StreamDeckSharp.Enum;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

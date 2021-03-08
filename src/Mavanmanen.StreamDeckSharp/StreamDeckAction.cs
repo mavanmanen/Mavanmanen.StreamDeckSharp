@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Mavanmanen.StreamDeckSharp.Enum;
-using Mavanmanen.StreamDeckSharp.Internal;
+using Mavanmanen.StreamDeckSharp.Internal.Client;
 using Mavanmanen.StreamDeckSharp.Payloads;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

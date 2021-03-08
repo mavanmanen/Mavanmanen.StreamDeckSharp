@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Mavanmanen.StreamDeckSharp.Internal.Client;
 using Mavanmanen.StreamDeckSharp.Internal.Events;
 using Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents;
 
-namespace Mavanmanen.StreamDeckSharp.Internal
+namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
 {
     internal class PluginEventHandler : IDisposable
     {

@@ -5,7 +5,7 @@ using System.Reflection;
 using Mavanmanen.StreamDeckSharp.Attributes;
 using Mavanmanen.StreamDeckSharp.Attributes.Data;
 
-namespace Mavanmanen.StreamDeckSharp.Internal
+namespace Mavanmanen.StreamDeckSharp.Internal.Definitions
 {
     internal class PluginDefinition
     {

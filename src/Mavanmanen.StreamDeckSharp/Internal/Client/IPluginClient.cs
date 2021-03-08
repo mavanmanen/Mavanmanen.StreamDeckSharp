@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Mavanmanen.StreamDeckSharp.Internal
+namespace Mavanmanen.StreamDeckSharp.Internal.Client
 {
     internal interface IPluginClient
     {

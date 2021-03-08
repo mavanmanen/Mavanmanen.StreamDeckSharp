@@ -1,5 +1,4 @@
-﻿using System;
-using Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents;
+﻿using Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents;
 using Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

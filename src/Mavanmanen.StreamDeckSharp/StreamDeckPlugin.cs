@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Mavanmanen.StreamDeckSharp.Internal;
+using Mavanmanen.StreamDeckSharp.Internal.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 

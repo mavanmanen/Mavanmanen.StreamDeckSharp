@@ -6,7 +6,7 @@ using Mavanmanen.StreamDeckSharp.Attributes.Data;
 using Mavanmanen.StreamDeckSharp.Enum;
 using Mavanmanen.StreamDeckSharp.PropertyInspector;
 
-namespace Mavanmanen.StreamDeckSharp.Internal
+namespace Mavanmanen.StreamDeckSharp.Internal.Definitions
 {
     internal class ActionDefinition
     {

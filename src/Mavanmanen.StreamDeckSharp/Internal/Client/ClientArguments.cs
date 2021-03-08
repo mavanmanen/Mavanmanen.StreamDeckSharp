@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Mavanmanen.StreamDeckSharp.Internal
+namespace Mavanmanen.StreamDeckSharp.Internal.Client
 {
     internal class ClientArguments
     {

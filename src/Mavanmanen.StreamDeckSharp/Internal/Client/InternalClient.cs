@@ -9,7 +9,7 @@ using Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents;
 using Mavanmanen.StreamDeckSharp.Internal.Messages;
 using Newtonsoft.Json;
 
-namespace Mavanmanen.StreamDeckSharp.Internal
+namespace Mavanmanen.StreamDeckSharp.Internal.Client
 {
     internal class InternalClient
     {

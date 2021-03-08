@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mavanmanen.StreamDeckSharp.Internal.Client;
+using Mavanmanen.StreamDeckSharp.Internal.Definitions;
 using Mavanmanen.StreamDeckSharp.Internal.Events;
 using Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Mavanmanen.StreamDeckSharp.Internal
+namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
 {
     internal class ActionEventHandler : IDisposable
     {
