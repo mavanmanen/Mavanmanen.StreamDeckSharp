@@ -18,15 +18,15 @@ namespace Mavanmanen.StreamDeckSharp.Internal
         private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
         private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
-        private readonly ClientArguments _arguments;
+        internal ClientArguments Arguments { get; }
         private ClientWebSocket? _socket;
 
         public event EventHandler<StreamDeckActionEvent>? ActionEventReceived;
         public event EventHandler<StreamDeckPluginEvent>? PluginEventReceived;
 
-        public InternalClient(string[] args)
+        public InternalClient(ClientArguments args)
         {
-            _arguments = ClientArguments.ParseFromArgs(args);
+            Arguments = args;
         }
 
         public async Task RunAsync()
@@ -39,7 +39,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal
             try
             {
                 _socket = new ClientWebSocket();
-                await _socket.ConnectAsync(new Uri($"ws://localhost:{_arguments.Port}"),
+                await _socket.ConnectAsync(new Uri($"ws://localhost:{Arguments.Port}"),
                     _cancellationTokenSource.Token);
                 while (_socket.State == WebSocketState.Connecting)
                 {
@@ -51,7 +51,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal
                     await DisconnectAsync();
                 }
 
-                await SendAsync(new RegisterEventMessage(_arguments.RegisterEvent, _arguments.UUID));
+                await SendAsync(new RegisterEventMessage(Arguments.RegisterEvent, Arguments.UUID));
 
                 await ReceiveAsync();
             }
@@ -137,13 +137,14 @@ namespace Mavanmanen.StreamDeckSharp.Internal
                     case EventTypes.ApplicationDidTerminate:
                     case EventTypes.SendToPlugin:
                     case EventTypes.DidReceiveGlobalSettings:
+                    case EventTypes.SystemDidWakeUp:
                         PluginEventReceived?.Invoke(this, (StreamDeckPluginEvent) streamDeckEvent);
                         break;
                 }
             }
         }
 
-        private async Task SendAsync(IMessage message)
+        public async Task SendAsync(Message message)
         {
             if (_socket == null)
             {
@@ -153,7 +154,12 @@ namespace Mavanmanen.StreamDeckSharp.Internal
             try
             {
                 await _semaphore.WaitAsync();
-                byte[] buffer = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
+
+                byte[] buffer = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message, new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                }));
+
                 await _socket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, _cancellationTokenSource.Token);
             }
             catch (Exception e)

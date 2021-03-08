@@ -1,5 +1,6 @@
 ﻿using Mavanmanen.StreamDeckSharp.Attributes;
 using Mavanmanen.StreamDeckSharp.Attributes.Data;
+using Mavanmanen.StreamDeckSharp.Enum;
 using Newtonsoft.Json;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
@@ -16,11 +17,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
         public string? DeviceType =>
             DeviceTypeEnum switch
             {
-                Attributes.DeviceType.StreamDeck => "kESDSDKDeviceType_StreamDeck",
-                Attributes.DeviceType.StreamDeckMini => "kESDSDKDeviceType_StreamDeckMini",
-                Attributes.DeviceType.StreamDeckXL => "kESDSDKDeviceType_StreamDeckXL",
-                Attributes.DeviceType.StreamDeckMobile => "kESDSDKDeviceType_StreamDeckMobile",
-                Attributes.DeviceType.CorsairGKeys => "kESDSDKDeviceType_CorsairGKeys",
+                Enum.DeviceType.StreamDeck => "kESDSDKDeviceType_StreamDeck",
+                Enum.DeviceType.StreamDeckMini => "kESDSDKDeviceType_StreamDeckMini",
+                Enum.DeviceType.StreamDeckXL => "kESDSDKDeviceType_StreamDeckXL",
+                Enum.DeviceType.StreamDeckMobile => "kESDSDKDeviceType_StreamDeckMobile",
+                Enum.DeviceType.CorsairGKeys => "kESDSDKDeviceType_CorsairGKeys",
                 var _ => null
             };
 

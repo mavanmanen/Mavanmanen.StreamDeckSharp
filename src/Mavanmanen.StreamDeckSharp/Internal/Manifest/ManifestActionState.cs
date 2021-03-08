@@ -1,6 +1,8 @@
 ﻿using Mavanmanen.StreamDeckSharp.Attributes;
 using Mavanmanen.StreamDeckSharp.Attributes.Data;
+using Mavanmanen.StreamDeckSharp.Enum;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
 {
@@ -24,23 +26,14 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
         [JsonProperty("TitleColor")]
         public string? TitleColor { get; }
 
-        [JsonIgnore]
+        [JsonProperty("TitleAlignment"), JsonConverter(typeof(StringEnumConverter))]
         public TitleAlignment? TitleAlignmentEnum { get; }
 
-        [JsonProperty("TitleAlignment")]
-        public string? TitleAlignment => TitleAlignmentEnum?.ToString("G").ToLower();
-
-        [JsonIgnore]
+        [JsonProperty("FontFamily"), JsonConverter(typeof(StringEnumConverter))]
         public FontFamily? FontFamilyEnum { get; }
 
-        [JsonProperty("FontFamily")]
-        public string? FontFamily => FontFamilyEnum?.ToString("G").Replace('_', ' ');
-
-        [JsonIgnore]
+        [JsonProperty("FontStyle"), JsonConverter(typeof(StringEnumConverter))]
         public FontStyle? FontStyleEnum { get; }
-
-        [JsonProperty("FontStyle")]
-        public string? FontStyle => FontFamilyEnum?.ToString("G").Replace('_', ' ');
 
         [JsonProperty("FontSize")]
         public int? FontSize { get; }

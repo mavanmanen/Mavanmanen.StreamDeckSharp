@@ -1,14 +1,12 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
 {
     internal class ManifestOs
     {
-        [JsonIgnore]
+        [JsonProperty("Platform"), JsonConverter(typeof(StringEnumConverter))]
         public ManifestOsPlatform PlatformEnum { get; }
-
-        [JsonProperty("Platform")]
-        public string Platform => PlatformEnum.ToString("G").ToLower();
 
         [JsonProperty("MinimumVersion")]
         public string MinimumVersion { get; }

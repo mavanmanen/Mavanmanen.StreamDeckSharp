@@ -1,6 +1,6 @@
 ﻿namespace Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents
 {
-    internal class ApplicationDidLaunchEvent : ApplicationEvent
+    internal class SystemDidWakeUpEvent : StreamDeckPluginEvent
     {
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Mavanmanen.StreamDeckSharp.Internal.Events;
@@ -9,18 +8,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Mavanmanen.StreamDeckSharp.Internal
 {
-    internal class ActionEventHandler
+    internal class ActionEventHandler : IDisposable
     {
         private readonly IServiceProvider _serviceProvider;
+        private readonly ClientArguments _clientArguments;
         private readonly Dictionary<string, Type> _actionMap;
 
-        public ActionEventHandler(IServiceProvider serviceProvider, List<ActionDefinition> actions)
+        public ActionEventHandler(IServiceProvider serviceProvider, List<ActionDefinition> actions, ClientArguments clientArguments)
         {
             _serviceProvider = serviceProvider;
-
-            _actionMap = actions.ToDictionary(
-                k => k.ActionData.Name.ToLower(),
-                v => v.Type);
+            _clientArguments = clientArguments;
+            _actionMap = actions.ToDictionary(k => k.ActionData.Name.ToLower(), v => v.Type);
         }
 
         public async Task HandleEventAsync(StreamDeckActionEvent actionEvent)
@@ -33,9 +31,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal
 
             using IServiceScope scope = _serviceProvider.CreateScope();
 
-            var actionInstance = (StreamDeckAction) scope.ServiceProvider.GetRequiredService(_actionMap[eventName]);
+            using var actionInstance = (StreamDeckAction) scope.ServiceProvider.GetRequiredService(_actionMap[eventName]);
             actionInstance.Context = actionEvent.Context;
+            actionInstance.PluginContext = _clientArguments.UUID;
             actionInstance.Device = actionEvent.Device;
+            actionInstance.Client = scope.ServiceProvider.GetRequiredService<IActionClient>();
 
             switch (actionEvent.Event)
             {
@@ -51,6 +51,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal
 
                 case EventTypes.TitleParameterDidChange:
                     await HandleTitleParametersDidChangeEventAsync(actionInstance, (TitleParameterDidChangeEvent) actionEvent);
+                    break;
+
+                case EventTypes.PropertyInspectorDidAppear:
+                case EventTypes.PropertyInspectorDidDisappear:
+                    await HandlePropertyInspectorEventAsync(actionInstance, (PropertyInspectorEvent) actionEvent);
                     break;
             }
         }
@@ -99,7 +104,25 @@ namespace Mavanmanen.StreamDeckSharp.Internal
             actionInstance.Coordinates = titleParameterDidChangeEvent.Payload.Coordinates;
             actionInstance.State = titleParameterDidChangeEvent.Payload.State;
             actionInstance.Settings = titleParameterDidChangeEvent.Payload.Settings;
-            await actionInstance.TitleParametersDidChange(titleParameterDidChangeEvent.Payload.Title, titleParameterDidChangeEvent.Payload.TitleParameters);
+            await actionInstance.TitleParametersDidChangeAsync(titleParameterDidChangeEvent.Payload.Title, titleParameterDidChangeEvent.Payload.TitleParameters);
+        }
+
+        private static async Task HandlePropertyInspectorEventAsync(StreamDeckAction actionInstance, PropertyInspectorEvent propertyInspectorEvent)
+        {
+            switch (propertyInspectorEvent.Event)
+            {
+                case EventTypes.PropertyInspectorDidAppear:
+                    await actionInstance.PropertyInspectorDidAppearAsync();
+                    break;
+
+                case EventTypes.PropertyInspectorDidDisappear:
+                    await actionInstance.PropertyInspectorDidDisappearAsync();
+                    break;
+            }
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

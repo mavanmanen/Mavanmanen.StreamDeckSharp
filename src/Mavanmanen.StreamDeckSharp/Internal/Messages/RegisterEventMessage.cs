@@ -2,17 +2,13 @@
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Messages
 {
-    internal class RegisterEventMessage : IMessage
+    internal class RegisterEventMessage : Message
     {
-        [JsonProperty("event")]
-        public string Event { get; }
-
         [JsonProperty("uuid")]
         public string UUID { get; }
 
-        public RegisterEventMessage(string eventName, string uuid)
+        public RegisterEventMessage(string eventName, string uuid) : base(eventName)
         {
-            Event = eventName;
             UUID = uuid;
         }
     }

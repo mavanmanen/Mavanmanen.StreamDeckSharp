@@ -1,4 +1,6 @@
-﻿namespace Mavanmanen.StreamDeckSharp.Attributes.Data
+﻿using Mavanmanen.StreamDeckSharp.Enum;
+
+namespace Mavanmanen.StreamDeckSharp.Attributes.Data
 {
     internal class ActionStateData
     {

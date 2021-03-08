@@ -1,5 +1,6 @@
 ﻿using System;
 using Mavanmanen.StreamDeckSharp.Attributes.Data;
+using Mavanmanen.StreamDeckSharp.Enum;
 
 namespace Mavanmanen.StreamDeckSharp.Attributes
 {

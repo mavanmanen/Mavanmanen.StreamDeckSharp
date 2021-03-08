@@ -1,11 +1,7 @@
-﻿using Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents.Payloads;
-using Newtonsoft.Json;
-
-namespace Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents
+﻿namespace Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents
 {
-    internal class ApplicationDidTerminateEvent : StreamDeckPluginEvent
+    internal class ApplicationDidTerminateEvent : ApplicationEvent
     {
-        [JsonProperty("payload")]
-        public ApplicationPayload? Payload { get; private set; }
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Mavanmanen.StreamDeckSharp.Attributes
+﻿namespace Mavanmanen.StreamDeckSharp.Enum
 {
     public enum FontFamily
     {

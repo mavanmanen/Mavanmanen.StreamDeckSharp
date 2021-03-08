@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Mavanmanen.StreamDeckSharp.Attributes;
 using Mavanmanen.StreamDeckSharp.Attributes.Data;
+using Mavanmanen.StreamDeckSharp.Enum;
 using Mavanmanen.StreamDeckSharp.PropertyInspector;
 
 namespace Mavanmanen.StreamDeckSharp.Internal

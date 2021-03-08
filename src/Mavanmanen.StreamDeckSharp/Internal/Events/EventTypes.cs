@@ -15,6 +15,7 @@
         DidReceiveSettings,
         DidReceiveGlobalSettings,
         PropertyInspectorDidAppear,
-        PropertyInspectorDidDisappear
+        PropertyInspectorDidDisappear,
+        SystemDidWakeUp
     }
 }
