@@ -1,1 +1,1 @@
-﻿{"uuid":"uuid","event":"eventName"}
+﻿{"uuid":"uuid","event":"RegisterPlugin"}

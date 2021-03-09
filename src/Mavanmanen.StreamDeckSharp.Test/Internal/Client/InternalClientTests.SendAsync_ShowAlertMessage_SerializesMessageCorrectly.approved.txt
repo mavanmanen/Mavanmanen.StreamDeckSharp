@@ -1,1 +1,1 @@
-﻿{"event":"showAlert","context":"context"}
+﻿{"event":"ShowAlert","context":"context"}

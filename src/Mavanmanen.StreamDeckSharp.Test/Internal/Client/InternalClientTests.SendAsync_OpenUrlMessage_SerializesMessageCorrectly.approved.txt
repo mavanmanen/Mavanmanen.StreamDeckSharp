@@ -1,1 +1,1 @@
-﻿{"event":"openUrl","payload":{"url":"url"}}
+﻿{"event":"OpenUrl","payload":{"url":"url"}}

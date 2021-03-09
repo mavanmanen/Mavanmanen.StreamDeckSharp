@@ -9,5 +9,16 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents.Payloads
 
         [JsonProperty("rows")]
         public int Rows { get; private set; }
+
+        public DeviceSize()
+        {
+            
+        }
+
+        public DeviceSize(int columns, int rows)
+        {
+            Columns = columns;
+            Rows = rows;
+        }
     }
 }

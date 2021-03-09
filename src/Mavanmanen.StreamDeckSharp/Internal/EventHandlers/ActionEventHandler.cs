@@ -41,22 +41,22 @@ namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
 
             switch (actionEvent.Event)
             {
-                case EventTypes.KeyDown:
-                case EventTypes.KeyUp:
+                case EventType.KeyDown:
+                case EventType.KeyUp:
                     await HandleKeyEventAsync(actionInstance, (KeyEvent) actionEvent);
                     break;
 
-                case EventTypes.WillAppear:
-                case EventTypes.WillDisappear:
+                case EventType.WillAppear:
+                case EventType.WillDisappear:
                     await HandleAppearanceEventAsync(actionInstance, (AppearanceEvent) actionEvent);
                     break;
 
-                case EventTypes.TitleParametersDidChange:
+                case EventType.TitleParametersDidChange:
                     await HandleTitleParametersDidChangeEventAsync(actionInstance, (TitleParameterDidChangeEvent) actionEvent);
                     break;
 
-                case EventTypes.PropertyInspectorDidAppear:
-                case EventTypes.PropertyInspectorDidDisappear:
+                case EventType.PropertyInspectorDidAppear:
+                case EventType.PropertyInspectorDidDisappear:
                     await HandlePropertyInspectorEventAsync(actionInstance, (PropertyInspectorEvent) actionEvent);
                     break;
             }
@@ -72,11 +72,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
 
             switch (keyEvent.Event)
             {
-                case EventTypes.KeyDown:
+                case EventType.KeyDown:
                     await actionInstance.OnKeyDownAsync();
                     break;
 
-                case EventTypes.KeyUp:
+                case EventType.KeyUp:
                     await actionInstance.OnKeyUpAsync();
                     break;
             }
@@ -91,11 +91,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
 
             switch (appearanceEvent.Event)
             {
-                case EventTypes.WillAppear:
+                case EventType.WillAppear:
                     await actionInstance.WillAppearAsync();
                     break;
 
-                case EventTypes.WillDisappear:
+                case EventType.WillDisappear:
                     await actionInstance.WillDisappearAsync();
                     break;
             }
@@ -113,11 +113,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
         {
             switch (propertyInspectorEvent.Event)
             {
-                case EventTypes.PropertyInspectorDidAppear:
+                case EventType.PropertyInspectorDidAppear:
                     await actionInstance.PropertyInspectorDidAppearAsync();
                     break;
 
-                case EventTypes.PropertyInspectorDidDisappear:
+                case EventType.PropertyInspectorDidDisappear:
                     await actionInstance.PropertyInspectorDidDisappearAsync();
                     break;
             }

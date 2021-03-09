@@ -56,7 +56,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
                 _clientArguments);
         }
 
-        private static StreamDeckActionEvent CreateEvent(EventTypes eventType)
+        private static StreamDeckActionEvent CreateEvent(EventType eventType)
         {
             var json = JObject.FromObject(new
             {
@@ -87,7 +87,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockAction.Setup(a => a.OnKeyDownAsync());
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.KeyDown));
+            await _sut.HandleEventAsync(CreateEvent(EventType.KeyDown));
 
             // Assert
             _mockAction.Verify(a => a.OnKeyDownAsync());
@@ -100,7 +100,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockAction.Setup(a => a.OnKeyUpAsync());
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.KeyUp));
+            await _sut.HandleEventAsync(CreateEvent(EventType.KeyUp));
 
             // Assert
             _mockAction.Verify(a => a.OnKeyUpAsync());
@@ -113,7 +113,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockAction.Setup(a => a.WillAppearAsync());
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.WillAppear));
+            await _sut.HandleEventAsync(CreateEvent(EventType.WillAppear));
 
             // Assert
             _mockAction.Verify(a => a.WillAppearAsync());
@@ -126,7 +126,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockAction.Setup(a => a.WillDisappearAsync());
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.WillDisappear));
+            await _sut.HandleEventAsync(CreateEvent(EventType.WillDisappear));
 
             // Assert
             _mockAction.Verify(a => a.WillDisappearAsync());
@@ -139,7 +139,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockAction.Setup(a => a.TitleParametersDidChangeAsync(It.IsAny<string>(), It.IsAny<TitleParameters>()));
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.TitleParametersDidChange));
+            await _sut.HandleEventAsync(CreateEvent(EventType.TitleParametersDidChange));
 
             // Assert
             _mockAction.Verify(a => a.TitleParametersDidChangeAsync(It.IsAny<string>(), It.IsAny<TitleParameters>()));
@@ -152,7 +152,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockAction.Setup(a => a.PropertyInspectorDidAppearAsync());
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.PropertyInspectorDidAppear));
+            await _sut.HandleEventAsync(CreateEvent(EventType.PropertyInspectorDidAppear));
 
             // Assert
             _mockAction.Verify(a => a.PropertyInspectorDidAppearAsync());
@@ -165,7 +165,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockAction.Setup(a => a.PropertyInspectorDidDisappearAsync());
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.PropertyInspectorDidDisappear));
+            await _sut.HandleEventAsync(CreateEvent(EventType.PropertyInspectorDidDisappear));
 
             // Assert
             _mockAction.Verify(a => a.PropertyInspectorDidDisappearAsync());

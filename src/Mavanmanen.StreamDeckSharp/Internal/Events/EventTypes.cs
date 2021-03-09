@@ -1,6 +1,6 @@
 ﻿namespace Mavanmanen.StreamDeckSharp.Internal.Events
 {
-    internal enum EventTypes
+    internal enum EventType
     {
         KeyDown,
         KeyUp,

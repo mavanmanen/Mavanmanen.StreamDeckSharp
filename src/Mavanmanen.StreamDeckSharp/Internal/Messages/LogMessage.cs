@@ -2,7 +2,7 @@
 {
     internal class LogMessage : Message
     {
-        public LogMessage(string message) : base("logMessage", null, new { message })
+        public LogMessage(string message) : base(MessageEventType.LogMessage, null, new { message })
         {
         }
     }

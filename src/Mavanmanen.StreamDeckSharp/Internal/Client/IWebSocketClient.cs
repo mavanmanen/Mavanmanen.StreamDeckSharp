@@ -9,5 +9,6 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
         Task<bool> ConnectAsync(int port);
         Task SendAsync(string message);
         Task ReceiveAsync();
+        Task DisconnectAsync();
     }
 }

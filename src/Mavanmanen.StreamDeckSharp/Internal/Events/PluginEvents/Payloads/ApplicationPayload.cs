@@ -6,5 +6,15 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents.Payloads
     {
         [JsonProperty("application")]
         public string Application { get; private set; } = null!;
+
+        public ApplicationPayload()
+        {
+            
+        }
+
+        public ApplicationPayload(string application)
+        {
+            Application = application;
+        }
     }
 }

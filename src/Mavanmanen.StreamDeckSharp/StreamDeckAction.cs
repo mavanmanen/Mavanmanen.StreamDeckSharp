@@ -52,6 +52,7 @@ namespace Mavanmanen.StreamDeckSharp
         /// The coordinates of the action triggered.
         /// </summary>
         public Coordinates Coordinates { get; internal set; } = null!;
+
         internal IActionClient Client { get; set; } = null!;
 
         /// <summary>

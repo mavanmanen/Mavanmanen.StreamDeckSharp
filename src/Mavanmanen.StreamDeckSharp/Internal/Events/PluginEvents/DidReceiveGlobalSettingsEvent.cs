@@ -6,6 +6,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents
     internal class DidReceiveGlobalSettingsEvent : StreamDeckPluginEvent
     {
         [JsonProperty("payload")]
-        public ReceiveGlobalSettingsPayload Payload { get; private set; } = null!;
+        public ReceiveGlobalSettingsPayload Payload { get; private set; }
+
+        public DidReceiveGlobalSettingsEvent(string device, ReceiveGlobalSettingsPayload payload) : base(EventType.DidReceiveGlobalSettings, device)
+        {
+            Payload = payload;
+        }
     }
 }

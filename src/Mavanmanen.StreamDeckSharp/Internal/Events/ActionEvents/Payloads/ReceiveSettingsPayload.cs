@@ -14,5 +14,17 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents.Payloads
 
         [JsonProperty("isInMultiAction")]
         public bool IsInMultiAction { get; private set; }
+
+        public ReceiveSettingsPayload()
+        {
+            
+        }
+
+        public ReceiveSettingsPayload(Coordinates coordinates, bool isInMultiAction, JObject settings)
+        {
+            Coordinates = coordinates;
+            IsInMultiAction = isInMultiAction;
+            Settings = settings;
+        }
     }
 }

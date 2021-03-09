@@ -22,24 +22,24 @@ namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
 
             switch (pluginEvent.Event)
             {
-                case EventTypes.DeviceDidConnect:
+                case EventType.DeviceDidConnect:
                     await _plugin.DeviceDidConnectAsync();
                     break;
 
-                case EventTypes.DeviceDidDisconnect:
+                case EventType.DeviceDidDisconnect:
                     await _plugin.DeviceDidDisconnectAsync();
                     break;
 
-                case EventTypes.ApplicationDidLaunch:
-                case EventTypes.ApplicationDidTerminate:
+                case EventType.ApplicationDidLaunch:
+                case EventType.ApplicationDidTerminate:
                     await HandleApplicationEvent((ApplicationEvent)pluginEvent);
                     break;
 
-                case EventTypes.DidReceiveGlobalSettings:
+                case EventType.DidReceiveGlobalSettings:
                     await _plugin.DidReceiveGlobalSettingsAsync(((DidReceiveGlobalSettingsEvent) pluginEvent).Payload.Settings);
                     break;
 
-                case EventTypes.SystemDidWakeUp:
+                case EventType.SystemDidWakeUp:
                     await _plugin.SystemDidWakeUpAsync();
                     break;
             }
@@ -49,11 +49,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
         {
             switch (applicationEvent.Event)
             {
-                case EventTypes.ApplicationDidLaunch:
+                case EventType.ApplicationDidLaunch:
                     await _plugin.ApplicationDidLaunchAsync(applicationEvent.Payload.Application);
                     break;
 
-                case EventTypes.ApplicationDidTerminate:
+                case EventType.ApplicationDidTerminate:
                     await _plugin.ApplicationDidTerminateAsync(applicationEvent.Payload.Application);
                     break;
             }

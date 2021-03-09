@@ -7,7 +7,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Messages
         [JsonProperty("device")]
         public string Device { get; }
 
-        public SwitchToProfileMessage(string context, string device, string? profileName = null) : base("switchToProfile", context, new { profile = profileName })
+        public SwitchToProfileMessage(string context, string device, string? profileName = null) : base(MessageEventType.SwitchToProfile, context, new { profile = profileName })
         {
             Device = device;
         }

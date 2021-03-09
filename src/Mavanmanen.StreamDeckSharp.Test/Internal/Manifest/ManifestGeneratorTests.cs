@@ -6,12 +6,17 @@ using Mavanmanen.StreamDeckSharp.Enum;
 using Mavanmanen.StreamDeckSharp.Internal.Definitions;
 using Mavanmanen.StreamDeckSharp.Internal.Manifest;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Mavanmanen.StreamDeckSharp.Test.Internal.Manifest
 {
     [UseReporter(typeof(DiffReporter))]
-    public class ManifestGeneratorTests
+    public class ManifestGeneratorTests : XunitApprovalBase
     {
+        public ManifestGeneratorTests(ITestOutputHelper output) : base(output)
+        {
+        }
+
         [Fact]
         public void GenerateManifest_GeneratesCorrectManifest()
         {

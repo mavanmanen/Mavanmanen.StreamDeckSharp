@@ -1,1 +1,1 @@
-﻿{"event":"sendToPropertyInspector","context":"context","payload":{"payload":"payload"}}
+﻿{"event":"SentToPropertyInspector","context":"context","payload":{"payload":"payload"}}

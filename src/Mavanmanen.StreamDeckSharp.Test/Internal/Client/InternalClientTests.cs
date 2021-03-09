@@ -6,16 +6,17 @@ using Mavanmanen.StreamDeckSharp.Internal.Client;
 using Mavanmanen.StreamDeckSharp.Internal.Messages;
 using Moq;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Mavanmanen.StreamDeckSharp.Test.Internal.Client
 {
     [UseReporter(typeof(DiffReporter))]
-    public class InternalClientTests
+    public class InternalClientTests : XunitApprovalBase
     {
         private static readonly Mock<IWebSocketClient> _mockWebSocketClient = new Mock<IWebSocketClient>();
         private readonly InternalClient _sut;
 
-        public InternalClientTests()
+        public InternalClientTests(ITestOutputHelper output) : base(output)
         {
             _sut = new InternalClient(new ClientArguments(0, "", ""), _mockWebSocketClient.Object);
         }
@@ -61,7 +62,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.Client
         public async void SendAsync_RegisterEventMessage_SerializesMessageCorrectly()
         {
             // Arrange
-            var message = new RegisterEventMessage("eventName", "uuid");
+            var message = new RegisterPluginMessage("uuid");
 
             // Act
             string result = await SendAndReceiveMessageAsync(message);

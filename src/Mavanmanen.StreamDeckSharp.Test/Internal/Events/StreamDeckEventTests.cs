@@ -16,7 +16,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.Events
         {
         }
 
-        private static async Task<string> GetEmbeddedJsonAsync(EventTypes eventType)
+        private static async Task<string> GetEmbeddedJsonAsync(EventType eventType)
         {
             await using Stream stream = Assembly
                 .GetExecutingAssembly()
@@ -27,22 +27,22 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.Events
         }
 
         [Theory]
-        [InlineData(EventTypes.KeyDown)]
-        [InlineData(EventTypes.KeyUp)]
-        [InlineData(EventTypes.WillAppear)]
-        [InlineData(EventTypes.WillDisappear)]
-        [InlineData(EventTypes.TitleParametersDidChange)]
-        [InlineData(EventTypes.DeviceDidConnect)]
-        [InlineData(EventTypes.DeviceDidDisconnect)]
-        [InlineData(EventTypes.ApplicationDidLaunch)]
-        [InlineData(EventTypes.ApplicationDidTerminate)]
-        [InlineData(EventTypes.SendToPlugin)]
-        [InlineData(EventTypes.DidReceiveSettings)]
-        [InlineData(EventTypes.DidReceiveGlobalSettings)]
-        [InlineData(EventTypes.PropertyInspectorDidAppear)]
-        [InlineData(EventTypes.PropertyInspectorDidDisappear)]
-        [InlineData(EventTypes.SystemDidWakeUp)]
-        private async void FromJson_WithInput_ParsesCorrectly(EventTypes eventType)
+        [InlineData(EventType.KeyDown)]
+        [InlineData(EventType.KeyUp)]
+        [InlineData(EventType.WillAppear)]
+        [InlineData(EventType.WillDisappear)]
+        [InlineData(EventType.TitleParametersDidChange)]
+        [InlineData(EventType.DeviceDidConnect)]
+        [InlineData(EventType.DeviceDidDisconnect)]
+        [InlineData(EventType.ApplicationDidLaunch)]
+        [InlineData(EventType.ApplicationDidTerminate)]
+        [InlineData(EventType.SendToPlugin)]
+        [InlineData(EventType.DidReceiveSettings)]
+        [InlineData(EventType.DidReceiveGlobalSettings)]
+        [InlineData(EventType.PropertyInspectorDidAppear)]
+        [InlineData(EventType.PropertyInspectorDidDisappear)]
+        [InlineData(EventType.SystemDidWakeUp)]
+        private async void FromJson_WithInput_ParsesCorrectly(EventType eventType)
         {
             // Arrange
             string json = await GetEmbeddedJsonAsync(eventType);

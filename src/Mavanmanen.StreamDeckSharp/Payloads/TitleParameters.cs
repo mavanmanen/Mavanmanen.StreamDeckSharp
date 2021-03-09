@@ -50,5 +50,27 @@ namespace Mavanmanen.StreamDeckSharp.Payloads
         /// </summary>
         [JsonProperty("titleColor")]
         public string? TitleColor { get; private set; }
+
+        public TitleParameters()
+        {
+            
+        }
+
+        public TitleParameters(FontFamily? fontFamily = null,
+            uint? fontSize = null,
+            FontStyle? fontStyle = null,
+            bool? fontUnderline = null,
+            bool? showTitle = null,
+            TitleAlignment? titleAlignment = null,
+            string? titleColor = null)
+        {
+            FontFamily = fontFamily;
+            FontSize = fontSize;
+            FontStyle = fontStyle;
+            FontUnderline = fontUnderline;
+            ShowTitle = showTitle;
+            TitleAlignment = titleAlignment;
+            TitleColor = titleColor;
+        }
     }
 }

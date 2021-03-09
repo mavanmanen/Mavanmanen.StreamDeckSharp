@@ -25,12 +25,19 @@ namespace Mavanmanen.StreamDeckSharp
     {
         private readonly InternalClient? _client;
         private readonly ServiceProvider _services;
+        private readonly Assembly _pluginAssembly;
 
-        /// <summary>
-        /// </summary>
         /// <param name="args">The arguments as provided to your plugin's program main method.</param>
-        public StreamDeckClient(string[] args)
+        public StreamDeckClient(string[] args) : this(Assembly.GetEntryAssembly()!, args)
         {
+
+        }
+
+        /// <param name="pluginAssembly">The assembly that contains your plugin.</param>
+        /// <param name="args">The arguments as provided to your plugin's program main method.</param>
+        public StreamDeckClient(Assembly pluginAssembly, string[] args)
+        {
+            _pluginAssembly = pluginAssembly;
             var services = new ServiceCollection();
 
             RegisterPlugin(services);
@@ -84,9 +91,9 @@ namespace Mavanmanen.StreamDeckSharp
             await _client.RunAsync();
         }
 
-        private static void RegisterActions(IServiceCollection services)
+        private void RegisterActions(IServiceCollection services)
         {
-            List<ActionDefinition> actions = Assembly.GetEntryAssembly()!.GetTypes()
+            List<ActionDefinition> actions = _pluginAssembly.GetTypes()
                 .Where(t => t.GetCustomAttribute<StreamDeckActionAttribute>() != null)
                 .Select(t => new ActionDefinition(t))
                 .ToList();
@@ -98,9 +105,9 @@ namespace Mavanmanen.StreamDeckSharp
             }
         }
 
-        private static void RegisterPlugin(IServiceCollection services)
+        private void RegisterPlugin(IServiceCollection services)
         {
-            Type? pluginType = Assembly.GetEntryAssembly()!.GetTypes().FirstOrDefault(t => t.GetCustomAttribute<StreamDeckPluginAttribute>() != null);
+            Type? pluginType = _pluginAssembly.GetTypes().FirstOrDefault(t => t.GetCustomAttribute<StreamDeckPluginAttribute>() != null);
 
             if (pluginType == null)
             {

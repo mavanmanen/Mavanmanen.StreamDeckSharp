@@ -4,7 +4,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Messages
 {
     internal class SetTitleMessage : Message
     {
-        public SetTitleMessage(string context, string title, Target? target = null, int? state = null) : base("setTitle", context, new
+        public SetTitleMessage(string context, string title, Target? target = null, int? state = null) : base(MessageEventType.SetTitle, context, new
         {
             title,
             target,

@@ -2,5 +2,8 @@
 {
     internal class SystemDidWakeUpEvent : StreamDeckPluginEvent
     {
+        public SystemDidWakeUpEvent(string device) : base(EventType.SystemDidWakeUp, device)
+        {
+        }
     }
 }

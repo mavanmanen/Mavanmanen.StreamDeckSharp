@@ -20,5 +20,19 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents.Payloads
 
         [JsonProperty("isInMultiAction")]
         public bool IsInMultiAction { get; private set; }
+
+        public KeyPayload()
+        {
+            
+        }
+
+        public KeyPayload(Coordinates coordinates, uint state, uint userDesiredState, bool isInMultiAction, JObject? settings = null)
+        {
+            Coordinates = coordinates;
+            State = state;
+            UserDesiredState = userDesiredState;
+            IsInMultiAction = isInMultiAction;
+            Settings = settings;
+        }
     }
 }

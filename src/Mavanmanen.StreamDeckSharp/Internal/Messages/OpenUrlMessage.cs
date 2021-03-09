@@ -2,7 +2,7 @@
 {
     internal class OpenUrlMessage : Message
     {
-        public OpenUrlMessage(string url) : base("openUrl", null, new { url })
+        public OpenUrlMessage(string url) : base(MessageEventType.OpenUrl, null, new { url })
         {
         }
     }

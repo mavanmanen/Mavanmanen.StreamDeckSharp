@@ -1,1 +1,1 @@
-﻿{"event":"setTitle","context":"context","payload":{"title":"title","target":0,"state":0}}
+﻿{"event":"SetTitle","context":"context","payload":{"title":"title","target":0,"state":0}}

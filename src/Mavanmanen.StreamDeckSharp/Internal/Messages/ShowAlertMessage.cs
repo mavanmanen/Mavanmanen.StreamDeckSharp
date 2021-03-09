@@ -2,7 +2,7 @@
 {
     internal class ShowAlertMessage : Message
     {
-        public ShowAlertMessage(string context) : base("showAlert", context)
+        public ShowAlertMessage(string context) : base(MessageEventType.ShowAlert, context)
         {
         }
     }

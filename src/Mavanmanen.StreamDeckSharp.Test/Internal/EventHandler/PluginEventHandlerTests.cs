@@ -18,7 +18,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _sut = new PluginEventHandler(_mockPlugin.Object, new ClientArguments(123, "", ""));
         }
 
-        private static StreamDeckPluginEvent CreateEvent(EventTypes eventType, object payload = null)
+        private static StreamDeckPluginEvent CreateEvent(EventType eventType, object payload = null)
         {
             var json = JObject.FromObject(new
             {
@@ -37,7 +37,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockPlugin.Setup(p => p.DeviceDidConnectAsync());
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.DeviceDidConnect));
+            await _sut.HandleEventAsync(CreateEvent(EventType.DeviceDidConnect));
 
             // Assert
             _mockPlugin.Verify(p => p.DeviceDidConnectAsync());
@@ -50,7 +50,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockPlugin.Setup(p => p.DeviceDidDisconnectAsync());
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.DeviceDidDisconnect));
+            await _sut.HandleEventAsync(CreateEvent(EventType.DeviceDidDisconnect));
 
             // Assert
             _mockPlugin.Verify(p => p.DeviceDidDisconnectAsync());
@@ -63,7 +63,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockPlugin.Setup(p => p.ApplicationDidLaunchAsync(It.IsAny<string>()));
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.ApplicationDidLaunch, new
+            await _sut.HandleEventAsync(CreateEvent(EventType.ApplicationDidLaunch, new
             {
                 application = "application"
             }));
@@ -79,7 +79,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockPlugin.Setup(p => p.ApplicationDidTerminateAsync(It.IsAny<string>()));
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.ApplicationDidTerminate, new
+            await _sut.HandleEventAsync(CreateEvent(EventType.ApplicationDidTerminate, new
             {
                 application = "application"
             }));
@@ -95,7 +95,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockPlugin.Setup(p => p.DidReceiveGlobalSettingsAsync(It.IsAny<JObject>()));
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.DidReceiveGlobalSettings, new
+            await _sut.HandleEventAsync(CreateEvent(EventType.DidReceiveGlobalSettings, new
             {
                 settings = new JObject()
             }));
@@ -111,7 +111,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
             _mockPlugin.Setup(p => p.SystemDidWakeUpAsync());
 
             // Act
-            await _sut.HandleEventAsync(CreateEvent(EventTypes.SystemDidWakeUp));
+            await _sut.HandleEventAsync(CreateEvent(EventType.SystemDidWakeUp));
 
             // Assert
             _mockPlugin.Verify(p => p.SystemDidWakeUpAsync());

@@ -2,7 +2,7 @@
 {
     internal class ShowOkMessage : Message
     {
-        public ShowOkMessage(string context) : base("showOk", context)
+        public ShowOkMessage(string context) : base(MessageEventType.ShowOk, context)
         {
         }
     }

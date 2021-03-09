@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -38,24 +39,19 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
 
                 return true;
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
+            catch (Exception e)
             {
                 await DisconnectAsync();
+                return false;
             }
         }
 
-        private async Task DisconnectAsync()
+        public async Task DisconnectAsync()
         {
             if (_socket == null)
             {
                 return;
             }
-
-            _cancellationTokenSource.Cancel();
 
             ClientWebSocket socket = _socket;
             _socket = null;
@@ -77,7 +73,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
                 byte[] buffer = Encoding.UTF8.GetBytes(message);
                 await _socket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, _cancellationTokenSource.Token);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 await DisconnectAsync();
             }
@@ -102,7 +98,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
                 {
                     result = await _socket.ReceiveAsync(arrayBuffer, _cancellationTokenSource.Token);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     continue;
                 }

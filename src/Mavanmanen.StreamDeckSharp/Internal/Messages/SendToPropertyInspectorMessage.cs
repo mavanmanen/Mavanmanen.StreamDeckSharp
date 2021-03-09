@@ -2,7 +2,7 @@
 {
     internal class SendToPropertyInspectorMessage : Message
     {
-        public SendToPropertyInspectorMessage(string context, object payload) : base("sendToPropertyInspector", context, payload)
+        public SendToPropertyInspectorMessage(string context, object payload) : base(MessageEventType.SentToPropertyInspector, context, payload)
         {
         }
     }

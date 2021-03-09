@@ -2,9 +2,14 @@
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents
 {
-    internal class StreamDeckPluginEvent : StreamDeckEvent
+    internal abstract class StreamDeckPluginEvent : StreamDeckEvent
     {
         [JsonProperty("device")]
-        public string Device { get; private set; } = null!;
+        public string Device { get; private set; }
+
+        protected StreamDeckPluginEvent(EventType eventType, string device) : base(eventType)
+        {
+            Device = device;
+        }
     }
 }

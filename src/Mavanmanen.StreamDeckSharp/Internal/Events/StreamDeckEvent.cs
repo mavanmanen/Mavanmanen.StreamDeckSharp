@@ -8,31 +8,41 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events
     internal abstract class StreamDeckEvent
     {
         [JsonProperty("event")]
-        public EventTypes Event { get; private set; }
+        public EventType Event { get; private set; }
 
-        internal static StreamDeckEvent? FromJson(string json)
+        protected StreamDeckEvent()
+        {
+
+        }
+
+        protected StreamDeckEvent(EventType eventType)
+        {
+            Event = eventType;
+        }
+
+        public static StreamDeckEvent? FromJson(string json)
         {
             JObject obj = JObject.Parse(json);
 
-            if (obj.ContainsKey("event") && System.Enum.TryParse(obj["event"]?.ToString(), true, out EventTypes eventType))
+            if (obj.ContainsKey("event") && System.Enum.TryParse(obj["event"]?.ToString(), true, out EventType eventType))
             {
                 return eventType switch
                 {
-                    EventTypes.KeyDown => JsonConvert.DeserializeObject<KeyDownEvent>(json),
-                    EventTypes.KeyUp => JsonConvert.DeserializeObject<KeyUpEvent>(json),
-                    EventTypes.WillAppear => JsonConvert.DeserializeObject<WillAppearEvent>(json),
-                    EventTypes.WillDisappear => JsonConvert.DeserializeObject<WillDisappearEvent>(json),
-                    EventTypes.TitleParametersDidChange => JsonConvert.DeserializeObject<TitleParameterDidChangeEvent>(json),
-                    EventTypes.DeviceDidConnect => JsonConvert.DeserializeObject<DeviceDidConnectEvent>(json),
-                    EventTypes.DeviceDidDisconnect => JsonConvert.DeserializeObject<DeviceDidDisconnectEvent>(json),
-                    EventTypes.ApplicationDidLaunch => JsonConvert.DeserializeObject<ApplicationDidLaunchEvent>(json),
-                    EventTypes.ApplicationDidTerminate => JsonConvert.DeserializeObject<ApplicationDidTerminateEvent>(json),
-                    EventTypes.SendToPlugin => JsonConvert.DeserializeObject<SendToPluginEvent>(json),
-                    EventTypes.DidReceiveSettings => JsonConvert.DeserializeObject<DidReceiveSettingsEvent>(json),
-                    EventTypes.DidReceiveGlobalSettings => JsonConvert.DeserializeObject<DidReceiveGlobalSettingsEvent>(json),
-                    EventTypes.PropertyInspectorDidAppear => JsonConvert.DeserializeObject<PropertyInspectorDidAppearEvent>(json),
-                    EventTypes.PropertyInspectorDidDisappear => JsonConvert.DeserializeObject<PropertyInspectorDidDisappearEvent>(json),
-                    EventTypes.SystemDidWakeUp => JsonConvert.DeserializeObject<SystemDidWakeUpEvent>(json),
+                    EventType.KeyDown => JsonConvert.DeserializeObject<KeyDownEvent>(json),
+                    EventType.KeyUp => JsonConvert.DeserializeObject<KeyUpEvent>(json),
+                    EventType.WillAppear => JsonConvert.DeserializeObject<WillAppearEvent>(json),
+                    EventType.WillDisappear => JsonConvert.DeserializeObject<WillDisappearEvent>(json),
+                    EventType.TitleParametersDidChange => JsonConvert.DeserializeObject<TitleParameterDidChangeEvent>(json),
+                    EventType.DeviceDidConnect => JsonConvert.DeserializeObject<DeviceDidConnectEvent>(json),
+                    EventType.DeviceDidDisconnect => JsonConvert.DeserializeObject<DeviceDidDisconnectEvent>(json),
+                    EventType.ApplicationDidLaunch => JsonConvert.DeserializeObject<ApplicationDidLaunchEvent>(json),
+                    EventType.ApplicationDidTerminate => JsonConvert.DeserializeObject<ApplicationDidTerminateEvent>(json),
+                    EventType.SendToPlugin => JsonConvert.DeserializeObject<SendToPluginEvent>(json),
+                    EventType.DidReceiveSettings => JsonConvert.DeserializeObject<DidReceiveSettingsEvent>(json),
+                    EventType.DidReceiveGlobalSettings => JsonConvert.DeserializeObject<DidReceiveGlobalSettingsEvent>(json),
+                    EventType.PropertyInspectorDidAppear => JsonConvert.DeserializeObject<PropertyInspectorDidAppearEvent>(json),
+                    EventType.PropertyInspectorDidDisappear => JsonConvert.DeserializeObject<PropertyInspectorDidDisappearEvent>(json),
+                    EventType.SystemDidWakeUp => JsonConvert.DeserializeObject<SystemDidWakeUpEvent>(json),
                     var _ => null
                 };
             }

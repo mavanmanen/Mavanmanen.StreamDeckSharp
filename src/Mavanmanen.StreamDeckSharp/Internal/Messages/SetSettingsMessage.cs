@@ -2,7 +2,7 @@
 {
     internal class SetSettingsMessage : Message
     {
-        public SetSettingsMessage(string context, object payload) : base("setSettings", context, payload)
+        public SetSettingsMessage(string context, object payload) : base(MessageEventType.SetSettings, context, payload)
         {
         }
     }

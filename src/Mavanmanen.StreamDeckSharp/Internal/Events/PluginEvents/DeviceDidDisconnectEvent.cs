@@ -2,5 +2,8 @@
 {
     internal class DeviceDidDisconnectEvent : StreamDeckPluginEvent
     {
+        public DeviceDidDisconnectEvent(string device) : base(EventType.DeviceDidDisconnect, device)
+        {
+        }
     }
 }

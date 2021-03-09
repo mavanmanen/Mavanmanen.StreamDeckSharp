@@ -33,24 +33,24 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
 
             switch (streamDeckEvent.Event)
             {
-                case EventTypes.KeyDown:
-                case EventTypes.KeyUp:
-                case EventTypes.WillAppear:
-                case EventTypes.WillDisappear:
-                case EventTypes.TitleParametersDidChange:
-                case EventTypes.DidReceiveSettings:
-                case EventTypes.PropertyInspectorDidAppear:
-                case EventTypes.PropertyInspectorDidDisappear:
+                case EventType.KeyDown:
+                case EventType.KeyUp:
+                case EventType.WillAppear:
+                case EventType.WillDisappear:
+                case EventType.TitleParametersDidChange:
+                case EventType.DidReceiveSettings:
+                case EventType.PropertyInspectorDidAppear:
+                case EventType.PropertyInspectorDidDisappear:
                     ActionEventReceived?.Invoke(this, (StreamDeckActionEvent)streamDeckEvent);
                     break;
 
-                case EventTypes.DeviceDidConnect:
-                case EventTypes.DeviceDidDisconnect:
-                case EventTypes.ApplicationDidLaunch:
-                case EventTypes.ApplicationDidTerminate:
-                case EventTypes.SendToPlugin:
-                case EventTypes.DidReceiveGlobalSettings:
-                case EventTypes.SystemDidWakeUp:
+                case EventType.DeviceDidConnect:
+                case EventType.DeviceDidDisconnect:
+                case EventType.ApplicationDidLaunch:
+                case EventType.ApplicationDidTerminate:
+                case EventType.SendToPlugin:
+                case EventType.DidReceiveGlobalSettings:
+                case EventType.SystemDidWakeUp:
                     PluginEventReceived?.Invoke(this, (StreamDeckPluginEvent)streamDeckEvent);
                     break;
             }
@@ -58,11 +58,23 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
 
         public async Task RunAsync()
         {
-            if (await _socketClient.ConnectAsync(_arguments.Port))
+            try
             {
-                await SendAsync(new RegisterEventMessage(_arguments.RegisterEvent, _arguments.UUID));
-                await _socketClient.ReceiveAsync();
+                if (await _socketClient.ConnectAsync(_arguments.Port))
+                {
+                    await SendAsync(new RegisterPluginMessage(_arguments.UUID));
+                    await _socketClient.ReceiveAsync();
+                }
             }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                await _socketClient.DisconnectAsync();
+            }
+            
         }
 
         public async Task SendAsync(Message message)

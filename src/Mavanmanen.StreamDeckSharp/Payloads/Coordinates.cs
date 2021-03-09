@@ -18,5 +18,16 @@ namespace Mavanmanen.StreamDeckSharp.Payloads
         /// </summary>
         [JsonProperty("row")]
         public int Row { get; private set; }
+
+        public Coordinates()
+        {
+            
+        }
+
+        public Coordinates(int column, int row)
+        {
+            Column = column;
+            Row = row;
+        }
     }
 }

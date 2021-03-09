@@ -20,5 +20,19 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents.Payloads
 
         [JsonProperty("titleParameters")]
         public TitleParameters TitleParameters { get; private set; } = null!;
+
+        public TitleParametersPayload()
+        {
+            
+        }
+
+        public TitleParametersPayload(Coordinates coordinates, uint state, string title, TitleParameters titleParameters, JObject? settings = null)
+        {
+            Coordinates = coordinates;
+            State = state;
+            Title = title;
+            TitleParameters = titleParameters;
+            Settings = settings;
+        }
     }
 }

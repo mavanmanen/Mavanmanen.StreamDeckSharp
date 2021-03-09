@@ -7,5 +7,15 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents.Payloads
     {
         [JsonProperty("settings")]
         public JObject Settings { get; private set; } = null!;
+
+        public ReceiveGlobalSettingsPayload()
+        {
+            
+        }
+
+        public ReceiveGlobalSettingsPayload(JObject settings)
+        {
+            Settings = settings;
+        }
     }
 }

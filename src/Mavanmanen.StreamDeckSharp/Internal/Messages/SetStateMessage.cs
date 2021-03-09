@@ -2,7 +2,7 @@
 {
     internal class SetStateMessage : Message
     {
-        public SetStateMessage(string context, int state) : base("setState", context, new { state })
+        public SetStateMessage(string context, int state) : base(MessageEventType.SetState, context, new { state })
         {
         }
     }
