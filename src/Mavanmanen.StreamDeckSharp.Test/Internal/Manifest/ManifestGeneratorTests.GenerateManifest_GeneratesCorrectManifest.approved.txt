@@ -10,7 +10,7 @@
           "Name": "state1",
           "Title": "state1",
           "ShowTitle": false,
-          "TitleColor": "titleColor",
+          "TitleColor": "#000000",
           "TitleAlignment": "Middle",
           "FontFamily": "Arial",
           "FontStyle": "Bold",
@@ -23,7 +23,7 @@
           "Name": "state2",
           "Title": "state2",
           "ShowTitle": false,
-          "TitleColor": "titleColor",
+          "TitleColor": "#000000",
           "TitleAlignment": "Middle",
           "FontFamily": "Arial",
           "FontStyle": "Bold",
@@ -31,17 +31,17 @@
           "FontUnderline": false
         }
       ],
-      "SupportedInMultiActions": false,
+      "SupportedInMultiActions": true,
       "Tooltip": "tooltip",
-      "UUID": "mavanmanen.streamdecksharp.test.manifest.name",
+      "UUID": "mavanmanen.streamdecksharp.test.internal.manifest.name",
       "VisibleInActionsList": true
     }
   ],
   "Author": "author",
   "Category": "category",
   "CategoryIcon": "categoryIcon",
-  "CodePathMac": "mavanmanen.streamdecksharp.test.manifest",
-  "CodePathWin": "mavanmanen.streamdecksharp.test.manifest.exe",
+  "CodePathMac": "mavanmanen.streamdecksharp.test.internal.manifest",
+  "CodePathWin": "mavanmanen.streamdecksharp.test.internal.manifest.exe",
   "Description": "description",
   "Icon": "icon",
   "Name": "pluginName",
@@ -58,7 +58,7 @@
     120
   ],
   "URL": "url",
-  "Version": "version",
+  "Version": "1.0",
   "SDKVersion": 2,
   "OS": [
     {

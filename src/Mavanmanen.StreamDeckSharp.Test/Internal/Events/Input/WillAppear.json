@@ -1,0 +1,15 @@
+{
+  "action": "com.elgato.example.action1",
+  "event": "willAppear",
+  "context": "opaqueValue",
+  "device": "opaqueValue",
+  "payload": {
+    "settings": null,
+    "coordinates": {
+      "column": 3,
+      "row": 1
+    },
+    "state": 0,
+    "isInMultiAction": false
+  }
+}

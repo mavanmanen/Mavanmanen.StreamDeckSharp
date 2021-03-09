@@ -1,0 +1,1 @@
+﻿{"device":"device","event":"switchToProfile","context":"context","payload":{"profile":"profileName"}}

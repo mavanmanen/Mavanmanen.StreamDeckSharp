@@ -1,0 +1,1 @@
+﻿{"payload":{"application":"com.apple.mail"},"device":null,"event":7}

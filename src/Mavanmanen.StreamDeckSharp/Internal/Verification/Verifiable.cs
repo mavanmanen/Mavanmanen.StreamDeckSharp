@@ -3,9 +3,9 @@ using System.Linq.Expressions;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Verification
 {
-    internal abstract class Verifiable<TClass>
+    internal abstract class Verifiable<TClass> where TClass : Verifiable<TClass>
     {
-        protected static StringVerifier<TClass> Verify(TClass instance, Expression<Func<TClass, string?>> memberSelector)
+        protected static StringVerifier<TClass> Verify(TClass instance, Expression<Func<TClass, string?>> memberSelector) 
         {
             return new StringVerifier<TClass>(instance, memberSelector);
         }

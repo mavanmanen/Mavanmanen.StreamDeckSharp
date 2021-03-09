@@ -51,7 +51,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.EventHandlers
                     await HandleAppearanceEventAsync(actionInstance, (AppearanceEvent) actionEvent);
                     break;
 
-                case EventTypes.TitleParameterDidChange:
+                case EventTypes.TitleParametersDidChange:
                     await HandleTitleParametersDidChangeEventAsync(actionInstance, (TitleParameterDidChangeEvent) actionEvent);
                     break;
 

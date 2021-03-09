@@ -1,0 +1,1 @@
+{"payload":{"settings":null,"coordinates":{"column":3,"row":1},"state":0,"title":"","titleParameters":{"fontFamily":"Arial","fontSize":12,"fontStyle":"Regular","fontUnderline":false,"showTitle":true,"titleAlignment":"Bottom","titleColor":"#ffffff"}},"action":"com.elgato.example.action1","context":"opaqueValue","device":"opaqueValue","event":4}

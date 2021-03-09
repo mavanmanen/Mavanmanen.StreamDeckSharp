@@ -1,0 +1,1 @@
+﻿{"event":"setImage","context":"context","payload":{"image":"base64Image","target":0,"state":0}}

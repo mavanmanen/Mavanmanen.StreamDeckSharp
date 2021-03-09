@@ -1,0 +1,6 @@
+{
+  "event": "didReceiveGlobalSettings",
+  "payload": {
+    "settings": null
+  }
+}

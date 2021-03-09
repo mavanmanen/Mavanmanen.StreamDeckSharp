@@ -22,7 +22,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events
                     EventTypes.KeyUp => JsonConvert.DeserializeObject<KeyUpEvent>(json),
                     EventTypes.WillAppear => JsonConvert.DeserializeObject<WillAppearEvent>(json),
                     EventTypes.WillDisappear => JsonConvert.DeserializeObject<WillDisappearEvent>(json),
-                    EventTypes.TitleParameterDidChange => JsonConvert.DeserializeObject<TitleParameterDidChangeEvent>(json),
+                    EventTypes.TitleParametersDidChange => JsonConvert.DeserializeObject<TitleParameterDidChangeEvent>(json),
                     EventTypes.DeviceDidConnect => JsonConvert.DeserializeObject<DeviceDidConnectEvent>(json),
                     EventTypes.DeviceDidDisconnect => JsonConvert.DeserializeObject<DeviceDidDisconnectEvent>(json),
                     EventTypes.ApplicationDidLaunch => JsonConvert.DeserializeObject<ApplicationDidLaunchEvent>(json),
@@ -32,6 +32,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Events
                     EventTypes.DidReceiveGlobalSettings => JsonConvert.DeserializeObject<DidReceiveGlobalSettingsEvent>(json),
                     EventTypes.PropertyInspectorDidAppear => JsonConvert.DeserializeObject<PropertyInspectorDidAppearEvent>(json),
                     EventTypes.PropertyInspectorDidDisappear => JsonConvert.DeserializeObject<PropertyInspectorDidDisappearEvent>(json),
+                    EventTypes.SystemDidWakeUp => JsonConvert.DeserializeObject<SystemDidWakeUpEvent>(json),
                     var _ => null
                 };
             }

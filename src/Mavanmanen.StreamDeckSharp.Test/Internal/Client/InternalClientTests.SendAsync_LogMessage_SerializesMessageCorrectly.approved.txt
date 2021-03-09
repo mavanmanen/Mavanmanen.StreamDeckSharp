@@ -1,0 +1,1 @@
+﻿{"event":"logMessage","payload":{"message":"message"}}

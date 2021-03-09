@@ -17,3 +17,4 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("442ec724-25cd-4e61-91c2-b59216d2620e")]
 [assembly: InternalsVisibleTo("Mavanmanen.StreamDeckSharp.Test")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]

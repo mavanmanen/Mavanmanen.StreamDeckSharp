@@ -38,13 +38,14 @@ namespace Mavanmanen.StreamDeckSharp
             RegisterPluginServices(services, serviceProvider);
             RegisterActions(services);
 
-            ClientArguments? clientArguments = ClientArguments.ParseFromArgs(args);
+            ClientArguments clientArguments = ClientArguments.ParseFromArgs(args);
             services.AddSingleton(clientArguments);
             services.AddSingleton<IPluginClient>(this);
             services.AddSingleton<IActionClient>(this);
             services.AddTransient<ActionEventHandler>();
             services.AddTransient<PluginEventHandler>();
-
+            services.AddSingleton<IWebSocketClient, WebSocketClient>();
+            services.AddSingleton<InternalClient>();
 
             if (!args.Any())
             {
@@ -64,7 +65,8 @@ namespace Mavanmanen.StreamDeckSharp
             }
 
             _services = services.BuildServiceProvider();
-            _client = new InternalClient(clientArguments);
+
+            _client = _services.GetRequiredService<InternalClient>();
             _client.ActionEventReceived += HandleActionEventAsync;
             _client.PluginEventReceived += HandlePluginEventAsync;
         }

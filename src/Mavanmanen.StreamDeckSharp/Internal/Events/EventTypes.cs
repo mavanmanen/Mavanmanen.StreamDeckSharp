@@ -6,7 +6,7 @@
         KeyUp,
         WillAppear,
         WillDisappear,
-        TitleParameterDidChange,
+        TitleParametersDidChange,
         DeviceDidConnect,
         DeviceDidDisconnect,
         ApplicationDidLaunch,

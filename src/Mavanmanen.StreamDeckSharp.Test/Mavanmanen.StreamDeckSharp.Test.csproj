@@ -7,7 +7,44 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Internal\Events\Input\ApplicationDidLaunch.json" />
+    <None Remove="Internal\Events\Input\ApplicationDidTerminate.json" />
+    <None Remove="Internal\Events\Input\DeviceDidConnect.json" />
+    <None Remove="Internal\Events\Input\DeviceDidDisconnect.json" />
+    <None Remove="Internal\Events\Input\DidReceiveGlobalSettings.json" />
+    <None Remove="Internal\Events\Input\DidReceiveSettings.json" />
+    <None Remove="Internal\Events\Input\KeyDown.json" />
+    <None Remove="Internal\Events\Input\KeyUp.json" />
+    <None Remove="Internal\Events\Input\PropertyInspectorDidAppear.json" />
+    <None Remove="Internal\Events\Input\PropertyInspectorDidDisappear.json" />
+    <None Remove="Internal\Events\Input\SendToPlugin.json" />
+    <None Remove="Internal\Events\Input\SystemDidWakeUp.json" />
+    <None Remove="Internal\Events\Input\TitleParametersDidChange.json" />
+    <None Remove="Internal\Events\Input\WillAppear.json" />
+    <None Remove="Internal\Events\Input\WillDisappear.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Internal\Events\Input\ApplicationDidLaunch.json" />
+    <EmbeddedResource Include="Internal\Events\Input\ApplicationDidTerminate.json" />
+    <EmbeddedResource Include="Internal\Events\Input\DeviceDidConnect.json" />
+    <EmbeddedResource Include="Internal\Events\Input\DeviceDidDisconnect.json" />
+    <EmbeddedResource Include="Internal\Events\Input\DidReceiveGlobalSettings.json" />
+    <EmbeddedResource Include="Internal\Events\Input\DidReceiveSettings.json" />
+    <EmbeddedResource Include="Internal\Events\Input\KeyDown.json" />
+    <EmbeddedResource Include="Internal\Events\Input\KeyUp.json" />
+    <EmbeddedResource Include="Internal\Events\Input\PropertyInspectorDidAppear.json" />
+    <EmbeddedResource Include="Internal\Events\Input\PropertyInspectorDidDisappear.json" />
+    <EmbeddedResource Include="Internal\Events\Input\SendToPlugin.json" />
+    <EmbeddedResource Include="Internal\Events\Input\SystemDidWakeUp.json" />
+    <EmbeddedResource Include="Internal\Events\Input\TitleParametersDidChange.json" />
+    <EmbeddedResource Include="Internal\Events\Input\WillAppear.json" />
+    <EmbeddedResource Include="Internal\Events\Input\WillDisappear.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ApprovalTests" Version="5.4.6" />
+    <PackageReference Include="ApprovalTests.Net.Xunit" Version="1.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="xunit" Version="2.4.1" />

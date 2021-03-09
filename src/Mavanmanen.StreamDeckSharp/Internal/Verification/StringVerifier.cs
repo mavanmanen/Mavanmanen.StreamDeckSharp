@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Verification
 {
-    internal class StringVerifier<TClass> : VerifierBase<TClass, string?>
+    internal class StringVerifier<TClass> : VerifierBase<TClass, string?> where TClass : Verifiable<TClass>
     {
         public StringVerifier(TClass instance, Expression<Func<TClass, string?>> memberSelector) : base(instance, memberSelector)
         {
@@ -21,7 +21,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Verification
 
         public StringVerifier<TClass> NotEmpty()
         {
-            if ((string?)Value == string.Empty)
+            if (Value == string.Empty)
             {
                 Fail($"String {PropName} must not be empty.");
             }
@@ -36,7 +36,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Verification
                 return this;
             }
 
-            if (!System.Text.RegularExpressions.Regex.IsMatch((string)Value, pattern))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(Value, pattern))
             {
                 Fail($"String {PropName} does not match pattern '{pattern}'.");
             }

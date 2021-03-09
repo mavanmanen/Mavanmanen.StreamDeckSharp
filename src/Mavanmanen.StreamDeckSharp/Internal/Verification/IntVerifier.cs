@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Verification
 {
-    internal class IntVerifier<TClass> : VerifierBase<TClass, int?>
+    internal class IntVerifier<TClass> : VerifierBase<TClass, int?> where TClass : Verifiable<TClass>
     {
         public IntVerifier(TClass instance, Expression<Func<TClass, int?>> memberSelector) : base(instance, memberSelector)
         {
