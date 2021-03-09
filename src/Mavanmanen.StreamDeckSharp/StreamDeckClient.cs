@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -53,7 +54,8 @@ namespace Mavanmanen.StreamDeckSharp
                 _services = services.BuildServiceProvider();
 
                 var manifestGenerator = _services.GetRequiredService<ManifestGenerator>();
-                manifestGenerator.GenerateManifest();
+                string manifestJson = manifestGenerator.GenerateManifest();
+                File.WriteAllText("manifest.json", manifestJson);
 
                 var propertyInspectorGenerator = _services.GetRequiredService<PropertyInspectorGenerator>();
                 propertyInspectorGenerator.GeneratePropertyInspectors();

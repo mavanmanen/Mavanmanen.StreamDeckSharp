@@ -64,7 +64,14 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
         [JsonProperty("ApplicationsToMonitor")]
         public ManifestApplicationsToMonitor? ApplicationsToMonitor { get; }
 
-        public Manifest(string pluginNamespace, PluginData pluginData, OsData? osData, IEnumerable<ProfileData>? profileData, ApplicationsToMonitorData? applicationsToMonitorData, IEnumerable<ManifestAction> actions)
+        public Manifest(
+            string pluginNamespace, 
+            PluginData pluginData, 
+            OsData? osData,
+            IEnumerable<ProfileData>? profileData, 
+            ApplicationsToMonitorData? applicationsToMonitorData,
+            IEnumerable<ManifestAction> actions, 
+            bool propertyInspectorSet)
         {
             Actions = actions.ToArray();
             Author = pluginData.Author;
@@ -76,7 +83,6 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
             Icon = pluginData.Icon;
             Name = pluginData.Name;
             Profiles = profileData?.Select(p => new ManifestProfile(p)).ToArray();
-            PropertyInspectorPath = pluginData.PropertyInspectorPath;
             DefaultWindowSize = pluginData.DefaultWindowSize != null ? new[] { (int)pluginData.DefaultWindowSize?.width!, (int)pluginData.DefaultWindowSize?.height! } : null;
             Url = pluginData.Url;
             Version = pluginData.Version;
@@ -92,6 +98,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
                     new ManifestOs(ManifestOsPlatform.Mac, osData.MacMinimumVersion)
                 };
             ApplicationsToMonitor = applicationsToMonitorData != null ? new ManifestApplicationsToMonitor(applicationsToMonitorData) : null;
+
+            if (propertyInspectorSet)
+            {
+                PropertyInspectorPath = $"propertyInspector/{Name}.html";
+            }
         }
     }
 }

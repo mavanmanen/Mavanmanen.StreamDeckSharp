@@ -1,8 +1,9 @@
 ﻿using Mavanmanen.StreamDeckSharp.Enum;
+using Mavanmanen.StreamDeckSharp.Internal.Verification;
 
 namespace Mavanmanen.StreamDeckSharp.Attributes.Data
 {
-    internal class ActionStateData
+    internal class ActionStateData : Verifiable<ActionStateData>
     {
         public string Image { get; }
         public string? Name { get; }
@@ -16,7 +17,8 @@ namespace Mavanmanen.StreamDeckSharp.Attributes.Data
         public int? FontSize { get; }
         public bool FontUnderline { get; }
 
-        public ActionStateData(string image,
+        public ActionStateData(
+            string image,
             string? name,
             string? multiActionImage,
             string? title,
@@ -39,6 +41,13 @@ namespace Mavanmanen.StreamDeckSharp.Attributes.Data
             FontStyle = fontStyle;
             FontSize = fontSize;
             FontUnderline = fontUnderline;
+
+            Verify(this, x => x.Image).NotNull().NotEmpty();
+            Verify(this, x => x.Name).NotEmpty();
+            Verify(this, x => x.MultiActionImage).NotEmpty();
+            Verify(this, x => x.Title).NotEmpty();
+            Verify(this, x => x.TitleColor).NotEmpty().Regex("^#[a-fA-F0-9]{6}$");
+            Verify(this, x => x.FontSize).Min(1);
         }
     }
 }

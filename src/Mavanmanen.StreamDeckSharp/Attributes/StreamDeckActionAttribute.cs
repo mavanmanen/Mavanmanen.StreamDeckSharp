@@ -26,11 +26,6 @@ namespace Mavanmanen.StreamDeckSharp.Attributes
             bool supportedInMultiActions = true,
             bool visibleInActionsList = true)
         {
-            if (icon == null && visibleInActionsList)
-            {
-                throw new ArgumentNullException(nameof(icon), "Icon may only be null if visibleInActionsList is set to false.");
-            }
-
             Data  = new ActionData(name, icon, tooltip, propertyInspectorPath, supportedInMultiActions, visibleInActionsList);
         }
     }

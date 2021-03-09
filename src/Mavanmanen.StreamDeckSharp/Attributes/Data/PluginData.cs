@@ -1,6 +1,8 @@
-﻿namespace Mavanmanen.StreamDeckSharp.Attributes.Data
+﻿using Mavanmanen.StreamDeckSharp.Internal.Verification;
+
+namespace Mavanmanen.StreamDeckSharp.Attributes.Data
 {
-    internal class PluginData
+    internal class PluginData : Verifiable<PluginData>
     {
         public string Name { get; }
         public string Icon { get; }
@@ -34,6 +36,27 @@
             CategoryIcon = categoryIcon;
             PropertyInspectorPath = propertyInspectorPath;
             DefaultWindowSize = defaultWindowSize;
+
+            Verify(this, x => x.Name).NotNull().NotEmpty();
+            Verify(this, x => x.Icon).NotNull().NotEmpty();
+            Verify(this, x => x.Author).NotNull().NotEmpty();
+            Verify(this, x => x.Description).NotNull().NotEmpty();
+            Verify(this, x => x.Version).NotNull().NotEmpty().Regex(@"^(\d\.?)+$");
+            Verify(this, x => x.Url).NotEmpty();
+
+            if (Category != null)
+            {
+                Verify(this, x => x.Category).NotEmpty();
+                Verify(this, x => x.CategoryIcon).NotNull().NotEmpty();
+            }
+
+            Verify(this, x => x.PropertyInspectorPath).NotEmpty();
+
+            if (DefaultWindowSize != null)
+            {
+                Verify(this, x => x.DefaultWindowSize!.Value.height).Min(1);
+                Verify(this, x => x.DefaultWindowSize!.Value.width).Min(1);
+            }
         }
     }
 }

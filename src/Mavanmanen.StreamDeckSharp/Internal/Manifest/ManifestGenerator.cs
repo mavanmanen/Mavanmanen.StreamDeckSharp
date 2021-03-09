@@ -17,18 +17,18 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
             _actions = actions;
         }
 
-        public void GenerateManifest()
+        public string GenerateManifest()
         {
             string pluginNameSpace = _plugin.Type.Namespace!.ToLower();
             IEnumerable<ManifestAction> actions = _actions.Select(a => new ManifestAction(pluginNameSpace, a.ActionData, a.ActionStateData, a.PropertyInspectorSet));
-            var manifest = new Manifest(pluginNameSpace, _plugin.PluginData, _plugin.OsData, _plugin.ProfileData, _plugin.ApplicationsToMonitorData, actions);
+            var manifest = new Manifest(pluginNameSpace, _plugin.PluginData, _plugin.OsData, _plugin.ProfileData, _plugin.ApplicationsToMonitorData, actions, _plugin.PropertyInspectorSet);
 
             string json = JsonConvert.SerializeObject(manifest, Formatting.Indented, new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore
             });
 
-            File.WriteAllText("manifest.json", json);
+            return json;
         }
     }
 }

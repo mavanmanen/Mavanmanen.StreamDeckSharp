@@ -1,0 +1,84 @@
+﻿{
+  "Actions": [
+    {
+      "Icon": "icon",
+      "Name": "name",
+      "States": [
+        {
+          "Image": "image",
+          "MultiActionImage": "multiActionImage",
+          "Name": "state1",
+          "Title": "state1",
+          "ShowTitle": false,
+          "TitleColor": "titleColor",
+          "TitleAlignment": "Middle",
+          "FontFamily": "Arial",
+          "FontStyle": "Bold",
+          "FontSize": 12,
+          "FontUnderline": false
+        },
+        {
+          "Image": "image",
+          "MultiActionImage": "multiActionImage",
+          "Name": "state2",
+          "Title": "state2",
+          "ShowTitle": false,
+          "TitleColor": "titleColor",
+          "TitleAlignment": "Middle",
+          "FontFamily": "Arial",
+          "FontStyle": "Bold",
+          "FontSize": 12,
+          "FontUnderline": false
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "tooltip",
+      "UUID": "mavanmanen.streamdecksharp.test.manifest.name",
+      "VisibleInActionsList": true
+    }
+  ],
+  "Author": "author",
+  "Category": "category",
+  "CategoryIcon": "categoryIcon",
+  "CodePathMac": "mavanmanen.streamdecksharp.test.manifest",
+  "CodePathWin": "mavanmanen.streamdecksharp.test.manifest.exe",
+  "Description": "description",
+  "Icon": "icon",
+  "Name": "pluginName",
+  "Profiles": [
+    {
+      "Name": "profile",
+      "DeviceType": "kESDSDKDeviceType_StreamDeck",
+      "ReadOnly": true,
+      "DontAutoSwitchWhenInstalled": true
+    }
+  ],
+  "DefaultWindowSize": [
+    560,
+    120
+  ],
+  "URL": "url",
+  "Version": "version",
+  "SDKVersion": 2,
+  "OS": [
+    {
+      "Platform": "Windows",
+      "MinimumVersion": "windowsMinimumVersion"
+    },
+    {
+      "Platform": "Mac",
+      "MinimumVersion": "macMinimumVersion"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "4.1"
+  },
+  "ApplicationsToMonitor": {
+    "mac": [
+      "notepad"
+    ],
+    "windows": [
+      "notepad.exe"
+    ]
+  }
+}

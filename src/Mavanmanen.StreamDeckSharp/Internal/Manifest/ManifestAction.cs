@@ -35,7 +35,6 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Manifest
         {
             Icon = actionData.Icon;
             Name = actionData.Name;
-            PropertyInspectorPath = actionData.PropertyInspectorPath;
             States = actionStateData?.Select(a => new ManifestActionState(a)).ToArray();
             SupportedInMultiActions = actionData.SupportedInMultiActions;
             Tooltip = actionData.Tooltip;

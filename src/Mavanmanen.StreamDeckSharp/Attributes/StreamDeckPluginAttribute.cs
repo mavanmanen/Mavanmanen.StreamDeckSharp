@@ -34,11 +34,6 @@ namespace Mavanmanen.StreamDeckSharp.Attributes
             string? propertyInspectorPath = null,
             string? defaultWindowSize = null)
         {
-            if (category != null && categoryIcon == null)
-            {
-                throw new ArgumentNullException(nameof(categoryIcon), "CategoryIcon must be set when the category is also set.");
-            }
-
             (int, int)? defaultWindowSizeTuple = null;
 
             if (defaultWindowSize != null)

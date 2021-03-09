@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Mavanmanen.StreamDeckSharp.Attributes;
 using Mavanmanen.StreamDeckSharp.Attributes.Data;
+using Mavanmanen.StreamDeckSharp.PropertyInspector;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Definitions
 {
@@ -14,6 +15,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Definitions
         public OsData? OsData { get; }
         public ProfileData[]? ProfileData { get; }
         public ApplicationsToMonitorData? ApplicationsToMonitorData { get; }
+        public bool PropertyInspectorSet { get; }
 
         public PluginDefinition(Type type)
         {
@@ -29,6 +31,12 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Definitions
             }
 
             ApplicationsToMonitorData = type.GetCustomAttribute<StreamDeckApplicationsToMonitorAttribute>()?.Data;
+
+            var propertyInspector = type.GetCustomAttribute<StreamDeckPropertyInspectorAttribute>();
+            if (propertyInspector != null)
+            {
+                PropertyInspectorSet = true;
+            }
         }
     }
 }

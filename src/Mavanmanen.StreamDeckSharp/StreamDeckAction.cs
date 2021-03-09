@@ -159,7 +159,6 @@ namespace Mavanmanen.StreamDeckSharp
         /// <summary>
         /// Switch to a profile that is defined in the manifest.
         /// </summary>
-        /// <param name="device">The device to do the switch.</param>
         /// <param name="profileName">The name of the profile to switch to.</param>
         protected async Task SwitchToProfile(string? profileName) => await Client.SwitchToProfileAsync(PluginContext, Device, profileName);
 

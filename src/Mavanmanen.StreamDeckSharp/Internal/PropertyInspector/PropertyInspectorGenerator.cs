@@ -24,7 +24,8 @@ namespace Mavanmanen.StreamDeckSharp.Internal.PropertyInspector
             WriteSharedItems();
             foreach (var (key, value) in GetPropertyInspectorTypeMap())
             {
-                GeneratePage(key, value);
+                string? page = GeneratePage(value);
+                File.WriteAllText($"{DIR}/{key}.html", page);
             }
         }
 
@@ -63,12 +64,12 @@ namespace Mavanmanen.StreamDeckSharp.Internal.PropertyInspector
                 .ToDictionary(kv => kv.key, kv => kv.value!);
         }
 
-        private static void GeneratePage(string actionName, Type propertyInspectorType)
+        internal static string? GeneratePage(Type propertyInspectorType)
         {
             object? instance = Activator.CreateInstance(propertyInspectorType);
             if (instance == null)
             {
-                return;
+                return null;
             }
 
             var properties = propertyInspectorType
@@ -78,7 +79,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.PropertyInspector
 
             if (!properties.Any())
             {
-                return;
+                return null;
             }
 
             var sb = new StringBuilder();
@@ -110,8 +111,7 @@ namespace Mavanmanen.StreamDeckSharp.Internal.PropertyInspector
 
             string? template = GetEmbeddedResource("pi.html");
             template = template.Replace("{{ CONTENT }}", sb.ToString());
-
-            File.WriteAllText($"{DIR}/{actionName}.html", template);
+            return template;
         }
 
         private static string CreateSimpleField(PropertyInspectorItemBase attribute, object? defaultValue)
