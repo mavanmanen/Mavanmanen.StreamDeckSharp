@@ -13,4 +13,4 @@ In addition to easy creation of plugins this framework also includes dependency 
 
 
 ## Usage
-Please check out the wiki on how to use this framework.
+Please check out the wiki for usage information.
