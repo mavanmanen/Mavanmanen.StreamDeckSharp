@@ -19,6 +19,8 @@ jobs:
       run: dotnet restore "src/Mavanmanen.StreamDeckSharp/Mavanmanen.StreamDeckSharp.csproj"
     - name: Build
       run: dotnet build --configuration Release --no-restore "src/Mavanmanen.StreamDeckSharp/Mavanmanen.StreamDeckSharp.csproj"
+    - name: Test
+      run: dotnet test "src/Mavanmanen.StreamDeckSharp.Test/Mavanmanen.StreamDeckSharp.Test.csproj"
     - name: Publish to NuGet
       uses: brandedoutcast/publish-nuget@v2
       with:
