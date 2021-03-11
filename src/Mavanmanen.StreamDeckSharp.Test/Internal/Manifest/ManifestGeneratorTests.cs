@@ -10,6 +10,7 @@ using Xunit.Abstractions;
 
 namespace Mavanmanen.StreamDeckSharp.Test.Internal.Manifest
 {
+    [Trait("Category", "Unit Tests")]
     [UseReporter(typeof(DiffReporter))]
     public class ManifestGeneratorTests : XunitApprovalBase
     {

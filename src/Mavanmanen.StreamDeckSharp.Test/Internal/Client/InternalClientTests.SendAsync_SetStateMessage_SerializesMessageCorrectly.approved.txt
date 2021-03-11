@@ -1,1 +1,1 @@
-﻿{"event":"SetState","context":"context","payload":{"state":1}}
+﻿{"payload":{"state":1},"event":"SetState","context":"context"}

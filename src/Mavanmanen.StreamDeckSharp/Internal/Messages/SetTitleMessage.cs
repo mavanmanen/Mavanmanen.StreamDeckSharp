@@ -1,16 +1,16 @@
-﻿using Mavanmanen.StreamDeckSharp.Enum;
+﻿using Mavanmanen.StreamDeckSharp.Internal.Messages.Payloads;
+using Newtonsoft.Json;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Messages
 {
     internal class SetTitleMessage : Message
     {
-        public SetTitleMessage(string context, string title, Target? target = null, int? state = null) : base(MessageEventType.SetTitle, context, new
+        [JsonProperty("payload")]
+        public SetTitlePayload Payload { get; private set; }
+
+        public SetTitleMessage(string context, SetTitlePayload payload) : base(MessageEventType.SetTitle, context)
         {
-            title,
-            target,
-            state
-        })
-        {
+            Payload = payload;
         }
     }
 }

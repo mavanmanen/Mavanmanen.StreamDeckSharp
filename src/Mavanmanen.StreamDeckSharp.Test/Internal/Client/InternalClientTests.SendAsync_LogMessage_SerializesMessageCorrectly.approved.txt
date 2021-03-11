@@ -1,1 +1,1 @@
-﻿{"event":"LogMessage","payload":{"message":"message"}}
+﻿{"payload":{"message":"message"},"event":"LogMessage"}

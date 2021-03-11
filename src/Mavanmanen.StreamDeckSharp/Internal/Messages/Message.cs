@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
@@ -8,19 +7,20 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Messages
     internal abstract class Message
     {
         [JsonProperty("event"), JsonConverter(typeof(StringEnumConverter))]
-        public MessageEventType Event { get; }
+        public MessageEventType Event { get; private set; }
 
         [JsonProperty("context")]
-        public string? Context { get; }
+        public string? Context { get; private set; }
 
-        [JsonProperty("payload")]
-        public object? Payload { get; protected set; }
+        protected Message()
+        {
+            
+        }
 
-        protected Message(MessageEventType eventType, string? context = null, object? payload = null)
+        protected Message(MessageEventType eventType, string? context = null)
         {
             Event = eventType;
             Context = context;
-            Payload = payload;
         }
 
         public static Message? FromJson(string json)

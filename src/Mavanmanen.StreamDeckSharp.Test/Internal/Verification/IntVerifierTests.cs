@@ -4,6 +4,7 @@ using Xunit;
 
 namespace Mavanmanen.StreamDeckSharp.Test.Internal.Verification
 {
+    [Trait("Category", "Unit Tests")]
     public class IntVerifierTests
     {
         private static IntVerifier<VerificationTestClass> CreateIntVerifier(VerificationTestClass instance)

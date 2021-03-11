@@ -2,12 +2,14 @@
 using Mavanmanen.StreamDeckSharp.Internal.EventHandlers;
 using Mavanmanen.StreamDeckSharp.Internal.Events;
 using Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents;
+using Mavanmanen.StreamDeckSharp.Test.Integration;
 using Moq;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
 {
+    [Trait("Category", "Unit Tests")]
     public class PluginEventHandlerTests
     {
         private readonly Mock<TestPlugin> _mockPlugin = new Mock<TestPlugin>();

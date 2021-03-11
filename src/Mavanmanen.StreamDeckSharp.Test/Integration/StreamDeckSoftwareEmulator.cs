@@ -11,9 +11,8 @@ using Newtonsoft.Json;
 
 namespace Mavanmanen.StreamDeckSharp.Test.Integration
 {
-    internal class StreamDeckSoftwareEmulator
+    internal class StreamDeckSoftwareEmulator : IDisposable
     {
-
         private enum Opcode : byte
         {
             Fragment = 0x0,
@@ -213,6 +212,15 @@ namespace Mavanmanen.StreamDeckSharp.Test.Integration
             frame[0] = (byte)((byte)opCode | 0x80);
 
             return frame;
+        }
+
+        public void Dispose()
+        {
+            _socket.Close();
+            _socket?.Dispose();
+
+            _clientSocket.Close();
+            _clientSocket?.Dispose();
         }
     }
 }

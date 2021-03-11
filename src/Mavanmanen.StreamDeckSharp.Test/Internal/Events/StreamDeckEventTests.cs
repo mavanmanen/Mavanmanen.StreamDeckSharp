@@ -9,6 +9,7 @@ using Xunit.Abstractions;
 
 namespace Mavanmanen.StreamDeckSharp.Test.Internal.Events
 {
+    [Trait("Category", "Unit Tests")]
     [UseReporter(typeof(DiffReporter))]
     public class StreamDeckEventTests : XunitApprovalBase
     {

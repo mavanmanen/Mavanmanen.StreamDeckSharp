@@ -6,6 +6,7 @@ using Mavanmanen.StreamDeckSharp.Internal.EventHandlers;
 using Mavanmanen.StreamDeckSharp.Internal.Events;
 using Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents;
 using Mavanmanen.StreamDeckSharp.Payloads;
+using Mavanmanen.StreamDeckSharp.Test.Integration;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Newtonsoft.Json.Linq;
@@ -13,6 +14,7 @@ using Xunit;
 
 namespace Mavanmanen.StreamDeckSharp.Test.Internal.EventHandler
 {
+    [Trait("Category", "Unit Tests")]
     public class ActionEventHandlerTests
     {
         private static readonly Mock<TestAction> _mockAction = new Mock<TestAction>();

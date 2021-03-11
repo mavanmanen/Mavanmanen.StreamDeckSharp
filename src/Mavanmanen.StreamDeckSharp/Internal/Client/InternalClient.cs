@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Client
 {
-    internal class InternalClient
+    internal class InternalClient : IDisposable
     {
         private readonly ClientArguments _arguments;
         private readonly IWebSocketClient _socketClient;
@@ -83,6 +83,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
             {
                 NullValueHandling = NullValueHandling.Ignore
             }));
+        }
+
+        public void Dispose()
+        {
+            _socketClient.Dispose();
         }
     }
 }

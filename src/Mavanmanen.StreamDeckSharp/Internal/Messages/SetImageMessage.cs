@@ -1,16 +1,16 @@
-﻿using Mavanmanen.StreamDeckSharp.Enum;
+﻿using Mavanmanen.StreamDeckSharp.Internal.Messages.Payloads;
+using Newtonsoft.Json;
 
 namespace Mavanmanen.StreamDeckSharp.Internal.Messages
 {
     internal class SetImageMessage : Message
     {
-        public SetImageMessage(string context, string? base64Image = null, Target? target = null, int? state = null) : base(MessageEventType.SetImage, context, new
+        [JsonProperty("payload")]
+        public SetImagePayload Payload { get; private set; }
+
+        public SetImageMessage(string context, SetImagePayload payload) : base(MessageEventType.SetImage, context)
         {
-            image = base64Image,
-            target,
-            state
-        })
-        {
+            Payload = payload;
         }
     }
 }

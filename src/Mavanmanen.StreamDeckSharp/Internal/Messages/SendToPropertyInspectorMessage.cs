@@ -1,9 +1,15 @@
-﻿namespace Mavanmanen.StreamDeckSharp.Internal.Messages
+﻿using Newtonsoft.Json;
+
+namespace Mavanmanen.StreamDeckSharp.Internal.Messages
 {
     internal class SendToPropertyInspectorMessage : Message
     {
-        public SendToPropertyInspectorMessage(string context, object payload) : base(MessageEventType.SentToPropertyInspector, context, payload)
+        [JsonProperty("payload")]
+        public object Payload { get; private set; }
+
+        public SendToPropertyInspectorMessage(string context, object payload) : base(MessageEventType.SentToPropertyInspector, context)
         {
+            Payload = payload;
         }
     }
 }

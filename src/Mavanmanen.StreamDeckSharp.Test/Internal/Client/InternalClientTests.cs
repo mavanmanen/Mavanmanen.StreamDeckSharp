@@ -4,12 +4,14 @@ using ApprovalTests.Reporters;
 using Mavanmanen.StreamDeckSharp.Enum;
 using Mavanmanen.StreamDeckSharp.Internal.Client;
 using Mavanmanen.StreamDeckSharp.Internal.Messages;
+using Mavanmanen.StreamDeckSharp.Internal.Messages.Payloads;
 using Moq;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Mavanmanen.StreamDeckSharp.Test.Internal.Client
 {
+    [Trait("Category", "Unit Tests")]
     [UseReporter(typeof(DiffReporter))]
     public class InternalClientTests : XunitApprovalBase
     {
@@ -36,7 +38,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.Client
         public async void SendAsync_LogMessage_SerializesMessageCorrectly()
         {
             // Arrange
-            var message = new LogMessage("message");
+            var message = new LogMessage(new LogMessagePayload("message"));
 
             // Act
             string result = await SendAndReceiveMessageAsync(message);
@@ -49,7 +51,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.Client
         public async void SendAsync_OpenUrlMessage_SerializesMessageCorrectly()
         {
             // Arrange
-            var message = new OpenUrlMessage("url");
+            var message = new OpenUrlMessage(new OpenUrlPayload("url"));
 
             // Act
             string result = await SendAndReceiveMessageAsync(message);
@@ -101,7 +103,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.Client
         public async void SendAsync_SetImageMessage_SerializesMessageCorrectly()
         {
             // Arrange
-            var message = new SetImageMessage("context", "base64Image", Target.Both, 0);
+            var message = new SetImageMessage("context", new SetImagePayload("base64Image", Target.Both, 0));
 
             // Act
             string result = await SendAndReceiveMessageAsync(message);
@@ -127,7 +129,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.Client
         public async void SendAsync_SetStateMessage_SerializesMessageCorrectly()
         {
             // Arrange
-            var message = new SetStateMessage("context", 1);
+            var message = new SetStateMessage("context", new SetStatePayload(1));
 
             // Act
             string result = await SendAndReceiveMessageAsync(message);
@@ -140,7 +142,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.Client
         public async void SendAsync_SetTitleMessage_SerializesMessageCorrectly()
         {
             // Arrange
-            var message = new SetTitleMessage("context", "title", Target.Both, 0);
+            var message = new SetTitleMessage("context", new SetTitlePayload("title", Target.Both, 0));
 
             // Act
             string result = await SendAndReceiveMessageAsync(message);
@@ -179,7 +181,7 @@ namespace Mavanmanen.StreamDeckSharp.Test.Internal.Client
         public async void SendAsync_SwitchToProfileMessage_SerializesMessageCorrectly()
         {
             // Arrange
-            var message = new SwitchToProfileMessage("context", "device", "profileName");
+            var message = new SwitchToProfileMessage("context", "device", new SwitchToProfilePayload("profileName"));
 
             // Act
             string result = await SendAndReceiveMessageAsync(message);

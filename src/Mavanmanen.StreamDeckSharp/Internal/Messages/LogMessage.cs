@@ -1,9 +1,16 @@
-﻿namespace Mavanmanen.StreamDeckSharp.Internal.Messages
+﻿using Mavanmanen.StreamDeckSharp.Internal.Messages.Payloads;
+using Newtonsoft.Json;
+
+namespace Mavanmanen.StreamDeckSharp.Internal.Messages
 {
     internal class LogMessage : Message
     {
-        public LogMessage(string message) : base(MessageEventType.LogMessage, null, new { message })
+        [JsonProperty("payload")]
+        public LogMessagePayload Payload { get; private set; }
+
+        public LogMessage(LogMessagePayload payload) : base(MessageEventType.LogMessage)
         {
+            Payload = payload;
         }
     }
 }

@@ -13,6 +13,7 @@ using Mavanmanen.StreamDeckSharp.Internal.Events.ActionEvents;
 using Mavanmanen.StreamDeckSharp.Internal.Events.PluginEvents;
 using Mavanmanen.StreamDeckSharp.Internal.Manifest;
 using Mavanmanen.StreamDeckSharp.Internal.Messages;
+using Mavanmanen.StreamDeckSharp.Internal.Messages.Payloads;
 using Mavanmanen.StreamDeckSharp.Internal.PropertyInspector;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,7 +22,7 @@ namespace Mavanmanen.StreamDeckSharp
     /// <summary>
     /// The client to handle your plugin's connection with the Stream Deck software.
     /// </summary>
-    public class StreamDeckClient : IPluginClient, IActionClient
+    public class StreamDeckClient : IPluginClient, IActionClient, IDisposable
     {
         private readonly InternalClient? _client;
         private readonly ServiceProvider _services;
@@ -141,14 +142,20 @@ namespace Mavanmanen.StreamDeckSharp
         }
 
         public async Task SetSettingsAsync(string context, object payload) => await _client!.SendAsync(new SetSettingsMessage(context, payload));
-        public async Task SetTitleAsync(string context, string title, Target? target = null, int? state = null) => await _client!.SendAsync(new SetTitleMessage(context, title, target, state));
-        public async Task SetImageAsync(string context, string? base64Image, Target? target = null, int? state = null) => await _client!.SendAsync(new SetImageMessage(context, base64Image, target, state));
+        public async Task SetTitleAsync(string context, string title, Target? target = null, int? state = null) => await _client!.SendAsync(new SetTitleMessage(context, new SetTitlePayload(title, target, state)));
+        public async Task SetImageAsync(string context, string? base64Image, Target? target = null, int? state = null) => await _client!.SendAsync(new SetImageMessage(context, new SetImagePayload(base64Image, target, state)));
         public async Task ShowAlertAsync(string context) => await _client!.SendAsync(new ShowAlertMessage(context));
         public async Task ShowOkAsync(string context) => await _client!.SendAsync(new ShowOkMessage(context));
-        public async Task SetStateAsync(string context, int state) => await _client!.SendAsync(new SetStateMessage(context, state));
-        public async Task OpenUrlAsync(string url) => await _client!.SendAsync(new OpenUrlMessage(url));
+        public async Task SetStateAsync(string context, int state) => await _client!.SendAsync(new SetStateMessage(context, new SetStatePayload(state)));
+        public async Task OpenUrlAsync(string url) => await _client!.SendAsync(new OpenUrlMessage(new OpenUrlPayload(url)));
         public async Task SetGlobalSettings(string context, object payload) => await _client!.SendAsync(new SetGlobalSettingsMessage(context, payload));
-        public async Task LogMessageAsync(string message) => await _client!.SendAsync(new LogMessage(message));
-        public async Task SwitchToProfileAsync(string context, string device, string? profileName) => await _client!.SendAsync(new SwitchToProfileMessage(context, device, profileName));
+        public async Task LogMessageAsync(string message) => await _client!.SendAsync(new LogMessage(new LogMessagePayload(message)));
+        public async Task SwitchToProfileAsync(string context, string device, string? profileName) => await _client!.SendAsync(new SwitchToProfileMessage(context, device, new SwitchToProfilePayload(profileName)));
+
+        public void Dispose()
+        {
+            _client?.Dispose();
+            _services.Dispose();
+        }
     }
 }

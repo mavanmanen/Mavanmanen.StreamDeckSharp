@@ -1,9 +1,16 @@
-﻿namespace Mavanmanen.StreamDeckSharp.Internal.Messages
+﻿using Mavanmanen.StreamDeckSharp.Internal.Messages.Payloads;
+using Newtonsoft.Json;
+
+namespace Mavanmanen.StreamDeckSharp.Internal.Messages
 {
     internal class SetStateMessage : Message
     {
-        public SetStateMessage(string context, int state) : base(MessageEventType.SetState, context, new { state })
+        [JsonProperty("payload")]
+        public SetStatePayload Payload { get; private set; }
+
+        public SetStateMessage(string context, SetStatePayload payload) : base(MessageEventType.SetState, context)
         {
+            Payload = payload;
         }
     }
 }

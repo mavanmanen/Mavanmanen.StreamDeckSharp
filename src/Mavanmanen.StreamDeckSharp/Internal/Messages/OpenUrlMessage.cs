@@ -1,9 +1,16 @@
-﻿namespace Mavanmanen.StreamDeckSharp.Internal.Messages
+﻿using Mavanmanen.StreamDeckSharp.Internal.Messages.Payloads;
+using Newtonsoft.Json;
+
+namespace Mavanmanen.StreamDeckSharp.Internal.Messages
 {
     internal class OpenUrlMessage : Message
     {
-        public OpenUrlMessage(string url) : base(MessageEventType.OpenUrl, null, new { url })
+        [JsonProperty("payload")]
+        public OpenUrlPayload Payload { get; private set; }
+
+        public OpenUrlMessage(OpenUrlPayload payload) : base(MessageEventType.OpenUrl)
         {
+            Payload = payload;
         }
     }
 }

@@ -119,5 +119,11 @@ namespace Mavanmanen.StreamDeckSharp.Internal.Client
             }
         }
 
+        public void Dispose()
+        {
+            _socket?.Dispose();
+            _cancellationTokenSource.Dispose();
+            _semaphore.Dispose();
+        }
     }
 }
