@@ -102,6 +102,10 @@ namespace Mavanmanen.StreamDeckSharp.Internal.PropertyInspector
                         PropertyInspectorSelectOptionAttribute[] options = property.GetCustomAttributes<PropertyInspectorSelectOptionAttribute>().ToArray();
                         sb.AppendLine(CreateSelect(attribute, options, propertyValue));
                         break;
+                    
+                    case PropertyInspectorPathAttribute:
+                        sb.AppendLine(CreatePath(attribute));
+                        break;
 
                     default:
                         sb.AppendLine(CreateSimpleField(attribute, propertyValue));
@@ -152,6 +156,15 @@ namespace Mavanmanen.StreamDeckSharp.Internal.PropertyInspector
             }
 
             template = template.Replace("{{ OPTIONS }}", sb.ToString());
+
+            return template;
+        }
+
+        private static string CreatePath(PropertyInspectorItemBase attribute)
+        {
+            string template = GetControlTemplate("path.html");
+            template = template.Replace("{{ LABEL }}", attribute.Label);
+            template = template.Replace("{{ REQUIRED }}", attribute.Required ? "required" : "");
 
             return template;
         }

@@ -10,12 +10,13 @@
     <RepositoryUrl>https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp</RepositoryUrl>
     <PackageProjectUrl>https://github.com/mavanmanen/Mavanmanen.StreamDeckSharp</PackageProjectUrl>
     <RepositoryType>Github</RepositoryType>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
+    <AssemblyVersion>1.0.1.1</AssemblyVersion>
+    <FileVersion>1.0.1.1</FileVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression></PackageLicenseExpression>
     <Copyright>Mitchell van Manen</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageVersion>1.0.1.1</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -49,6 +50,8 @@
     <EmbeddedResource Include="Internal\PropertyInspector\Templates\pi.html" />
     <EmbeddedResource Include="Internal\PropertyInspector\Templates\pi.js" />
     <EmbeddedResource Include="Internal\PropertyInspector\Templates\sdpi.css" />
+    <None Remove="Internal\PropertyInspector\Templates\Controls\path.html" />
+    <EmbeddedResource Include="Internal\PropertyInspector\Templates\Controls\path.html" />
   </ItemGroup>
 
   <ItemGroup>
